@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Room Layout Simulation — Studio</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      min-height: 100vh;
+    }
+
+    /* ── Navigation (shared) ── */
+    nav {
+      background: #161b22;
+      border-bottom: 1px solid #30363d;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav .brand {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #58a6ff;
+      padding: 1rem 1rem 1rem 0;
+      text-decoration: none;
+      margin-right: 1rem;
+      white-space: nowrap;
+    }
+    nav a {
+      color: #8b949e;
+      text-decoration: none;
+      padding: 1rem 0.75rem;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    nav a:hover, nav a.active { color: #c9d1d9; border-bottom: 2px solid #58a6ff; }
+
+    /* ── Page header ── */
+    .page-header {
+      text-align: center;
+      padding: 2.5rem 1.5rem 1rem;
+    }
+    .page-header h1 { font-size: 1.75rem; color: #e6edf3; margin-bottom: 0.5rem; }
+    .page-header p { color: #8b949e; font-size: 0.95rem; }
+
+    /* ── Carousel ── */
+    .carousel-wrapper {
+      max-width: 900px;
+      margin: 2rem auto 0;
+      padding: 0 1.5rem;
+    }
+
+    .carousel {
+      position: relative;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.4s ease;
+    }
+
+    .slide {
+      min-width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1.5rem;
+    }
+
+    .slide img {
+      max-width: 100%;
+      max-height: 420px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #0d1117;
+    }
+
+    /* SVG placeholder shown when no image file exists */
+    .slide .placeholder {
+      width: 100%;
+      max-width: 640px;
+      background: #0d1117;
+      border: 2px dashed #30363d;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 2rem;
+      min-height: 280px;
+      color: #8b949e;
+      font-size: 0.875rem;
+    }
+
+    .slide .placeholder pre {
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: #58a6ff;
+      text-align: left;
+    }
+
+    .slide-caption {
+      margin-top: 1.25rem;
+      text-align: center;
+    }
+
+    .slide-caption h2 {
+      font-size: 1.125rem;
+      color: #e6edf3;
+      margin-bottom: 0.35rem;
+    }
+
+    .slide-caption p { font-size: 0.875rem; color: #8b949e; }
+
+    /* ── Navigation arrows ── */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(22, 27, 34, 0.85);
+      border: 1px solid #30363d;
+      color: #c9d1d9;
+      border-radius: 50%;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background 0.2s;
+      z-index: 10;
+      user-select: none;
+    }
+    .arrow:hover { background: #30363d; }
+    .arrow.prev { left: 0.75rem; }
+    .arrow.next { right: 0.75rem; }
+
+    /* ── Dots ── */
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem;
+    }
+
+    .dot {
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 50%;
+      background: #30363d;
+      cursor: pointer;
+      transition: background 0.2s;
+      border: none;
+    }
+    .dot.active { background: #58a6ff; }
+
+    /* ── Upload hint ── */
+    .upload-hint {
+      max-width: 900px;
+      margin: 1.5rem auto 0;
+      padding: 0 1.5rem;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      color: #8b949e;
+      line-height: 1.6;
+    }
+    .upload-hint summary { padding: 0.75rem; cursor: pointer; color: #58a6ff; }
+    .upload-hint div { padding: 0 0.75rem 0.75rem; }
+    .upload-hint code {
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 4px;
+      padding: 0.1em 0.4em;
+      font-size: 0.85em;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: #484f58;
+      border-top: 1px solid #21262d;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="brand">🎬 Studio</a>
+    <a href="../markdown_renderer.html?file=1_Real_Unknown/README.md">1 · Unknown</a>
+    <a href="../markdown_renderer.html?file=2_Environment/README.md">2 · Environment</a>
+    <a href="carousel.html" class="active">3 · Simulation</a>
+    <a href="../markdown_renderer.html?file=4_Formula/README.md">4 · Formula</a>
+    <a href="../markdown_renderer.html?file=5_Symbols/README.md">5 · Symbols</a>
+    <a href="../markdown_renderer.html?file=6_Semblance/README.md">6 · Semblance</a>
+    <a href="../markdown_renderer.html?file=7_Testing_Known/README.md">7 · Testing</a>
+    <a href="../markdown_renderer.html">📄 MD Renderer</a>
+  </nav>
+
+  <div class="page-header">
+    <h1>🖼️ Room Layout Simulation</h1>
+    <p>Visual mockups for the 2 m × 3.5 m studio at Petersfield Mansions</p>
+  </div>
+
+  <div class="carousel-wrapper">
+    <div class="carousel" id="carousel">
+      <button class="arrow prev" onclick="move(-1)" aria-label="Previous">&#8592;</button>
+      <button class="arrow next" onclick="move(1)" aria-label="Next">&#8594;</button>
+
+      <div class="slides" id="slides">
+
+        <!-- Slide 1 — Concept A -->
+        <div class="slide">
+          <div class="placeholder">
+            <strong style="color:#e6edf3;font-size:1rem;">Layout Concept A — Desk Against Long Wall</strong>
+            <pre>┌──────────────────────────────────────────┐
+│  ←————————— 3.5 m ——————————→           │
+│  ┌─────────────────────────────┐  ↑      │
+│  │  DESK + MONITOR + CAMERA    │  │      │
+│  └─────────────────────────────┘  2m     │
+│  [ ACOUSTIC PANEL ]                │     │
+│  [ KEY LIGHT ]  [ FILL LIGHT ]     │     │
+│                              [DOOR]↓     │
+└──────────────────────────────────────────┘</pre>
+          </div>
+          <div class="slide-caption">
+            <h2>Concept A — Desk Against Long Wall</h2>
+            <p>Desk and camera along the 3.5 m wall, lights flanking the subject, acoustic panels on the opposite wall.</p>
+          </div>
+        </div>
+
+        <!-- Slide 2 — Concept B -->
+        <div class="slide">
+          <div class="placeholder">
+            <strong style="color:#e6edf3;font-size:1rem;">Layout Concept B — Corner Setup</strong>
+            <pre>┌──────────────────────────────────────────┐
+│  ←————————— 3.5 m ——————————→           │
+│  ┌──────┐                          ↑    │
+│  │ DESK │  [CAMERA ON TRIPOD]       │   │
+│  └──────┘                          2m  │
+│  [BACKDROP]  [LIGHTS L/R]           │   │
+│                              [DOOR] ↓   │
+└──────────────────────────────────────────┘</pre>
+          </div>
+          <div class="slide-caption">
+            <h2>Concept B — Corner Setup</h2>
+            <p>Desk in corner to maximise open floor space. Tripod-mounted camera at distance with backdrop visible.</p>
+          </div>
+        </div>
+
+        <!-- Slide 3 — Concept C -->
+        <div class="slide">
+          <div class="placeholder">
+            <strong style="color:#e6edf3;font-size:1rem;">Layout Concept C — Standing Desk / Presenter Mode</strong>
+            <pre>┌──────────────────────────────────────────┐
+│  ←————————— 3.5 m ——————————→           │
+│                                    ↑    │
+│   [KEY LIGHT]  [PERSON]  [FILL]    │    │
+│                                    2m   │
+│   [CAMERA]   [STANDING DESK]       │    │
+│                              [DOOR]↓    │
+└──────────────────────────────────────────┘</pre>
+          </div>
+          <div class="slide-caption">
+            <h2>Concept C — Standing Presenter Mode</h2>
+            <p>Standing desk with camera at eye level. Good for tutorial-style videos with visible body language.</p>
+          </div>
+        </div>
+
+        <!-- Slide 4 — Gear List -->
+        <div class="slide">
+          <div class="placeholder">
+            <strong style="color:#e6edf3;font-size:1rem;">Equipment Overview</strong>
+            <pre>Camera ........... Mirrorless / DSLR
+Lens ............. Wide (16–24 mm equiv)
+Microphone ....... Condenser / Shotgun
+Key Light ........ Bi-colour LED panel
+Fill Light ....... Smaller LED / reflector
+Capture Card ..... HDMI → USB (optional)
+Acoustic Panels .. 4–6 wall-mounted panels
+Backdrop ......... Collapsible / muslin
+Tripod / Arm ..... Camera mount solution
+Cable Mgmt ....... Velcro ties + trays</pre>
+          </div>
+          <div class="slide-caption">
+            <h2>Equipment Overview</h2>
+            <p>Minimum viable gear list to get the studio producing professional-quality video.</p>
+          </div>
+        </div>
+
+      </div><!-- /slides -->
+
+      <div class="dots" id="dots"></div>
+    </div>
+  </div>
+
+  <details class="upload-hint">
+    <summary>💡 How to add your own layout images</summary>
+    <div>
+      <p>Place image files in <code>3_Simulation/images/</code> and update the carousel slides in <code>3_Simulation/carousel.html</code>.</p>
+      <p style="margin-top:0.5rem;">Replace the <code>&lt;div class="placeholder"&gt;</code> element in each slide with:</p>
+      <pre style="margin-top:0.5rem;background:#0d1117;padding:0.75rem;border-radius:6px;border:1px solid #30363d;font-size:0.8rem;color:#58a6ff;">&lt;img src="images/layout-a.jpg" alt="Layout Concept A" /&gt;</pre>
+    </div>
+  </details>
+
+  <footer>Studio · 3_Simulation · Petersfield Mansions 2 m × 3.5 m</footer>
+
+  <script>
+    let current = 0;
+    const slidesEl = document.getElementById('slides');
+    const dotsEl = document.getElementById('dots');
+    const total = slidesEl.children.length;
+
+    // Build dots
+    for (let i = 0; i < total; i++) {
+      const btn = document.createElement('button');
+      btn.className = 'dot' + (i === 0 ? ' active' : '');
+      btn.setAttribute('aria-label', 'Slide ' + (i + 1));
+      btn.addEventListener('click', () => goTo(i));
+      dotsEl.appendChild(btn);
+    }
+
+    function goTo(idx) {
+      current = (idx + total) % total;
+      slidesEl.style.transform = `translateX(-${current * 100}%)`;
+      document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    function move(dir) { goTo(current + dir); }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') move(-1);
+      if (e.key === 'ArrowRight') move(1);
+    });
+
+    // Touch / swipe support
+    let touchStart = null;
+    slidesEl.addEventListener('touchstart', e => { touchStart = e.touches[0].clientX; e.preventDefault(); }, { passive: false });
+    slidesEl.addEventListener('touchend', e => {
+      if (touchStart === null) return;
+      const diff = touchStart - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) move(diff > 0 ? 1 : -1);
+      touchStart = null;
+    });
+  </script>
+</body>
+</html>

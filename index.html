@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio — Video Production Setup</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      min-height: 100vh;
+    }
+
+    /* ── Navigation ── */
+    nav {
+      background: #161b22;
+      border-bottom: 1px solid #30363d;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav .brand {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #58a6ff;
+      padding: 1rem 1rem 1rem 0;
+      text-decoration: none;
+      margin-right: 1rem;
+      white-space: nowrap;
+    }
+
+    nav a {
+      color: #8b949e;
+      text-decoration: none;
+      padding: 1rem 0.75rem;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+
+    nav a:hover, nav a.active {
+      color: #c9d1d9;
+      border-bottom: 2px solid #58a6ff;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      text-align: center;
+      padding: 4rem 1.5rem 2rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #e6edf3;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      color: #8b949e;
+      max-width: 560px;
+      margin: 0 auto 2rem;
+    }
+
+    /* ── Cards grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, transform 0.15s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .card:hover {
+      border-color: #58a6ff;
+      transform: translateY(-2px);
+    }
+
+    .card .icon { font-size: 2rem; }
+
+    .card h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #e6edf3;
+    }
+
+    .card p {
+      font-size: 0.875rem;
+      color: #8b949e;
+      line-height: 1.5;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: #484f58;
+      border-top: 1px solid #21262d;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="brand">🎬 Studio</a>
+    <a href="markdown_renderer.html?file=1_Real_Unknown/README.md">1 · Unknown</a>
+    <a href="markdown_renderer.html?file=2_Environment/README.md">2 · Environment</a>
+    <a href="3_Simulation/carousel.html">3 · Simulation</a>
+    <a href="markdown_renderer.html?file=4_Formula/README.md">4 · Formula</a>
+    <a href="markdown_renderer.html?file=5_Symbols/README.md">5 · Symbols</a>
+    <a href="markdown_renderer.html?file=6_Semblance/README.md">6 · Semblance</a>
+    <a href="markdown_renderer.html?file=7_Testing_Known/README.md">7 · Testing</a>
+    <a href="markdown_renderer.html">📄 MD Renderer</a>
+  </nav>
+
+  <div class="hero">
+    <h1>🎬 Studio Setup</h1>
+    <p>Video production setup for a 2 m × 3.5 m room at Petersfield Mansions — from unknown problem to proven result.</p>
+  </div>
+
+  <div class="grid">
+    <a href="markdown_renderer.html?file=1_Real_Unknown/README.md" class="card">
+      <div class="icon">❓</div>
+      <h2>1 · Real Unknown</h2>
+      <p>Define the problem. OKRs, goals, and the question you're trying to answer.</p>
+    </a>
+    <a href="markdown_renderer.html?file=2_Environment/README.md" class="card">
+      <div class="icon">🗺️</div>
+      <h2>2 · Environment</h2>
+      <p>Read the landscape. Roadmap, use cases, constraints, and client tools.</p>
+    </a>
+    <a href="3_Simulation/carousel.html" class="card">
+      <div class="icon">🖼️</div>
+      <h2>3 · Simulation</h2>
+      <p>Room-layout image carousel. See what the solution could look like.</p>
+    </a>
+    <a href="markdown_renderer.html?file=4_Formula/README.md" class="card">
+      <div class="icon">🧪</div>
+      <h2>4 · Formula</h2>
+      <p>Steps and guides. The recipe for how to actually build the studio.</p>
+    </a>
+    <a href="markdown_renderer.html?file=5_Symbols/README.md" class="card">
+      <div class="icon">💻</div>
+      <h2>5 · Symbols</h2>
+      <p>Core source code and implementation details including PrismJS.</p>
+    </a>
+    <a href="markdown_renderer.html?file=6_Semblance/README.md" class="card">
+      <div class="icon">🐛</div>
+      <h2>6 · Semblance</h2>
+      <p>Errors and near-misses. Log problems, causes, fixes, and workarounds.</p>
+    </a>
+    <a href="markdown_renderer.html?file=7_Testing_Known/README.md" class="card">
+      <div class="icon">✅</div>
+      <h2>7 · Testing Known</h2>
+      <p>Validate against the original objectives. Did you solve the unknown?</p>
+    </a>
+    <a href="markdown_renderer.html" class="card">
+      <div class="icon">📄</div>
+      <h2>Markdown Renderer</h2>
+      <p>Render any Markdown file in the browser with syntax highlighting.</p>
+    </a>
+  </div>
+
+  <footer>
+    Studio · Petersfield Mansions · 2 m × 3.5 m · Built with GitHub Pages
+  </footer>
+
+  <script>
+    // Highlight active nav link
+    const current = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('nav a').forEach(a => {
+      if (a.getAttribute('href') === current) a.classList.add('active');
+    });
+  </script>
+</body>
+</html>
