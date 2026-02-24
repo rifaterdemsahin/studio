@@ -7,6 +7,43 @@
 <title>The Studio Blueprint</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+  /* ── Shared Navigation ── */
+  nav {
+    background: #161b22;
+    border-bottom: 1px solid #30363d;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  nav .brand {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #58a6ff;
+    padding: 1rem 1rem 1rem 0;
+    text-decoration: none;
+    margin-right: 1rem;
+    white-space: nowrap;
+  }
+  nav a {
+    color: #8b949e;
+    text-decoration: none;
+    padding: 1rem 0.75rem;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  nav a:hover, nav a.active {
+    color: #c9d1d9;
+    border-bottom: 2px solid #58a6ff;
+  }
+</style>
+<style>
   :root {
     --bg: #0a0a0a;
     --surface: #111111;
@@ -532,6 +569,19 @@ footer { flex-direction: column; gap: 20px; text-align: center; }
 
 </head>
 <body>
+
+<nav>
+  <a href="../index.html" class="brand">🎬 Studio</a>
+  <a href="../markdown_renderer.html?file=1_Real_Unknown/README.md">1 · Unknown</a>
+  <a href="../markdown_renderer.html?file=2_Environment/README.md">2 · Environment</a>
+  <a href="../3_Simulation/carousel.html">3 · Simulation</a>
+  <a href="../markdown_renderer.html?file=4_Formula/README.md">4 · Formula</a>
+  <a href="../markdown_renderer.html?file=5_Symbols/README.md">5 · Symbols</a>
+  <a href="petersfield_v2_studio.html" class="active">🏗️ Blueprint</a>
+  <a href="../markdown_renderer.html?file=6_Semblance/README.md">6 · Semblance</a>
+  <a href="../markdown_renderer.html?file=7_Testing_Known/README.md">7 · Testing</a>
+  <a href="../markdown_renderer.html">📄 MD Renderer</a>
+</nav>
 
 <!-- HERO -->
 
