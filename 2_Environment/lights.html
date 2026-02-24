@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lights Environment — Studio</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0d1117; color: #c9d1d9; min-height: 100vh; }
+    nav { background: #161b22; border-bottom: 1px solid #30363d; padding: 0 1.5rem; display: flex; align-items: center; gap: 0; flex-wrap: wrap; position: sticky; top: 0; z-index: 100; }
+    nav .brand { font-weight: 700; font-size: 1.1rem; color: #58a6ff; padding: 1rem 1rem 1rem 0; text-decoration: none; margin-right: 1rem; white-space: nowrap; }
+    nav a { color: #8b949e; text-decoration: none; padding: 1rem 0.75rem; font-size: 0.875rem; transition: color 0.2s; white-space: nowrap; }
+    nav a:hover, nav a.active { color: #c9d1d9; border-bottom: 2px solid #58a6ff; }
+    .page-header { text-align: center; padding: 3rem 1.5rem 1.5rem; }
+    .page-header h1 { font-size: 2rem; color: #e6edf3; margin-bottom: 0.5rem; }
+    .page-header p { color: #8b949e; font-size: 1rem; max-width: 560px; margin: 0 auto; }
+    .content { max-width: 860px; margin: 2rem auto; padding: 0 1.5rem 4rem; }
+    .section { background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 1.5rem; margin-bottom: 1.25rem; }
+    .section h2 { font-size: 1.1rem; color: #e6edf3; margin-bottom: 0.75rem; }
+    .section p, .section li { font-size: 0.9rem; color: #8b949e; line-height: 1.7; }
+    .section ul { padding-left: 1.25rem; }
+    .section ul li { margin-bottom: 0.3rem; }
+    .checklist li { list-style: none; padding-left: 0; }
+    .checklist li::before { content: "☐ "; color: #58a6ff; }
+    .checklist li.done::before { content: "✅ "; }
+    .badge { display: inline-block; background: #1f2d3d; color: #58a6ff; border: 1px solid #30363d; border-radius: 4px; font-size: 0.75rem; padding: 0.1em 0.55em; margin-right: 0.3rem; }
+    footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: #484f58; border-top: 1px solid #21262d; }
+    footer a { color: #58a6ff; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="brand">🎬 Studio</a>
+    <a href="../markdown_renderer.html?file=2_Environment/README.md">2 · Environment</a>
+    <a href="workstation.html">🖥️ Workstation</a>
+    <a href="room.html">🏠 Room</a>
+    <a href="lights.html" class="active">💡 Lights</a>
+    <a href="audio.html">🎙️ Audio</a>
+    <a href="../cameras.html">📷 Cameras</a>
+    <a href="../gear.html">🎛️ Gear</a>
+    <a href="../4_Formula/index.html">🧪 Formula</a>
+    <a href="../7_Testing_Known/index.html">✅ Testing</a>
+  </nav>
+
+  <div class="page-header">
+    <h1>💡 Lights Environment</h1>
+    <p>Key light, fill light, colour temperature, and positioning for professional on-camera appearance.</p>
+  </div>
+
+  <div class="content">
+
+    <div class="section">
+      <h2>☀️ Three-Point Lighting Basics</h2>
+      <p style="margin-bottom:0.75rem;">For a talking-head studio setup in a small room, a simplified two-point (key + fill) or three-point (key + fill + back) setup works best.</p>
+      <ul>
+        <li><span class="badge">Key Light</span> Main illumination — positioned 45° to the side and slightly above eye level</li>
+        <li><span class="badge">Fill Light</span> Softens shadows from key — opposite side, lower intensity (50–75% of key)</li>
+        <li><span class="badge">Back / Rim</span> Optional — separates subject from background, adds depth</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>🌡️ Colour Temperature</h2>
+      <ul>
+        <li><strong style="color:#e6edf3;">Daylight:</strong> 5500–6000 K — crisp, natural look; matches window light</li>
+        <li><strong style="color:#e6edf3;">Warm white:</strong> 3200–4000 K — warmer, cosy feel for lifestyle content</li>
+        <li><strong style="color:#e6edf3;">Recommendation:</strong> Set both key and fill to the same colour temperature to avoid mixed-light colour casts</li>
+        <li><strong style="color:#e6edf3;">Camera white balance:</strong> Always set manually to match your lights; never use Auto WB while recording</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>📍 Positioning for 2 m × 3.5 m Room</h2>
+      <ul>
+        <li>Key light: 60–80 cm from subject, 45° to camera left or right, above eye level</li>
+        <li>Fill light: same distance on opposite side, lower intensity or use a reflector</li>
+        <li>In a small room, softboxes or panels with diffusers prevent harsh shadows on walls</li>
+        <li>Avoid pointing lights directly at the backdrop — use a separate background light if needed</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>⚙️ Recommended Gear</h2>
+      <ul>
+        <li><strong style="color:#e6edf3;">Elgato Key Light Air</strong> — bi-colour 2900–7000 K, app-controlled, desk-mounted</li>
+        <li><strong style="color:#e6edf3;">Aputure Amaran 100x</strong> — bi-colour COB light with Bowens mount for modifiers</li>
+        <li><strong style="color:#e6edf3;">Godox SL60W</strong> — budget-friendly constant LED with Bowens mount</li>
+        <li><strong style="color:#e6edf3;">Large reflector</strong> — 5-in-1 collapsible as a free fill-light alternative</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>✅ Lights Checklist</h2>
+      <ul class="checklist">
+        <li>Position key light 45° to subject at eye level +15°</li>
+        <li>Set key light colour temperature to 5500 K</li>
+        <li>Position fill light on opposite side at 50% key intensity</li>
+        <li>Set fill light to same colour temperature as key</li>
+        <li>Set camera white balance manually to 5500 K</li>
+        <li>Test: no harsh shadows under eyes or chin</li>
+        <li>Test: no hotspot on background wall</li>
+        <li>Test: catchlights visible in eyes on camera</li>
+        <li>Close blinds / block natural light for consistent results</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <footer>
+    Studio · Lights · Petersfield Mansions ·
+    <a href="https://github.com/rifaterdemsahin/studio" target="_blank" rel="noopener">🐙 GitHub</a> ·
+    <a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener">▶️ YouTube</a>
+  </footer>
+</body>
+</html>

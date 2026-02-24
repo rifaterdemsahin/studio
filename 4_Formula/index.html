@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formula — How to Use Studio Gear</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0d1117; color: #c9d1d9; min-height: 100vh; }
+    nav { background: #161b22; border-bottom: 1px solid #30363d; padding: 0 1.5rem; display: flex; align-items: center; gap: 0; flex-wrap: wrap; position: sticky; top: 0; z-index: 100; }
+    nav .brand { font-weight: 700; font-size: 1.1rem; color: #58a6ff; padding: 1rem 1rem 1rem 0; text-decoration: none; margin-right: 1rem; white-space: nowrap; }
+    nav a { color: #8b949e; text-decoration: none; padding: 1rem 0.75rem; font-size: 0.875rem; transition: color 0.2s; white-space: nowrap; }
+    nav a:hover, nav a.active { color: #c9d1d9; border-bottom: 2px solid #58a6ff; }
+    .page-header { text-align: center; padding: 3rem 1.5rem 1.5rem; }
+    .page-header h1 { font-size: 2rem; color: #e6edf3; margin-bottom: 0.5rem; }
+    .page-header p { color: #8b949e; font-size: 1rem; max-width: 620px; margin: 0 auto; }
+    .content { max-width: 960px; margin: 2rem auto; padding: 0 1.5rem 4rem; }
+
+    /* Accordion cards */
+    details.card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+    details.card[open] { border-color: #58a6ff; }
+    details.card summary {
+      padding: 1.1rem 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #e6edf3;
+      list-style: none;
+      user-select: none;
+    }
+    details.card summary::-webkit-details-marker { display: none; }
+    details.card summary .arrow { margin-left: auto; color: #58a6ff; transition: transform 0.2s; font-size: 0.8rem; }
+    details.card[open] summary .arrow { transform: rotate(90deg); }
+    .card-body { padding: 0 1.5rem 1.5rem; }
+    .card-body p, .card-body li { font-size: 0.875rem; color: #8b949e; line-height: 1.7; }
+    .card-body ol, .card-body ul { padding-left: 1.4rem; }
+    .card-body li { margin-bottom: 0.35rem; }
+    .card-body h3 { font-size: 0.9rem; color: #58a6ff; margin: 0.9rem 0 0.4rem; font-weight: 600; }
+    .card-body strong { color: #e6edf3; }
+    .tip {
+      background: #0d1117;
+      border-left: 3px solid #58a6ff;
+      padding: 0.6rem 1rem;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.8rem;
+      color: #8b949e;
+      margin-top: 0.75rem;
+    }
+    .tip strong { color: #58a6ff; }
+
+    /* Section separator */
+    .section-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #58a6ff;
+      border-bottom: 1px solid #21262d;
+      padding-bottom: 0.4rem;
+      margin: 2rem 0 0.75rem;
+    }
+
+    footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: #484f58; border-top: 1px solid #21262d; margin-top: 2rem; }
+    footer a { color: #58a6ff; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="brand">🎬 Studio</a>
+    <a href="../markdown_renderer.html?file=1_Real_Unknown/README.md">1 · Unknown</a>
+    <a href="../markdown_renderer.html?file=2_Environment/README.md">2 · Environment</a>
+    <a href="../3_Simulation/carousel.html">3 · Simulation</a>
+    <a href="index.html" class="active">4 · Formula</a>
+    <a href="../cameras.html">📷 Cameras</a>
+    <a href="../gear.html">🎛️ Gear</a>
+    <a href="../5_Symbols/petersfield_v2_studio.html">🏗️ Blueprint</a>
+    <a href="../7_Testing_Known/index.html">✅ Testing</a>
+    <a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener">▶️ YouTube</a>
+    <a href="https://github.com/rifaterdemsahin/studio" target="_blank" rel="noopener">🐙 GitHub</a>
+  </nav>
+
+  <div class="page-header">
+    <h1>🧪 Formula</h1>
+    <p>Step-by-step guides for every piece of gear in the studio — click any item to expand the instructions.</p>
+  </div>
+
+  <div class="content">
+
+    <!-- ── CAMERAS ── -->
+    <p class="section-title">📷 Cameras</p>
+
+    <details class="card">
+      <summary><span>📷</span> How to use the Logitech Brio 4K <span class="arrow">▶</span></summary>
+      <div class="card-body">
+        <h3>Setup</h3>
+        <ol>
+          <li>Plug the USB-C cable into the Brio and a free USB 3.0 port on the workstation.</li>
+          <li>Windows will auto-install the driver. Open <strong>Logitech Capture</strong> or <strong>OBS Studio</strong> to verify detection.</li>
+          <li>Mount the camera on top of your primary monitor using the built-in clip.</li>
+        </ol>
+        <h3>OBS Configuration</h3>
+        <ol>
+          <li>Add a <strong>Video Capture Device</strong> source in OBS.</li>
+          <li>Select <em>Logitech BRIO</em> from the device list.</li>
+          <li>Set resolution to <strong>3840 × 2160</strong> (4K) at 30 fps, or <strong>1920 × 1080</strong> at 60 fps for smoother motion.</li>
+          <li>Enable <strong>Auto White Balance</strong> in OBS or lock to your light temperature (e.g. 5500 K).</li>
+        </ol>
+        <div class="tip"><strong>💡 Tip:</strong> Use the Logitech Capture app to fine-tune HDR, field of view (65°/78°/90°), and auto-focus zone before OBS.</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span>⚡</span> How to use the Elgato Facecam <span class="arrow">▶</span></summary>
+      <div class="card-body">
+        <h3>Setup</h3>
+        <ol>
+          <li>Connect via USB-C 3.0 — the Facecam requires USB 3.0 for full 1080p 60 fps bandwidth.</li>
+          <li>Install <strong>Elgato Camera Hub</strong> for advanced controls (sharpness, noise reduction, exposure lock).</li>
+          <li>Mount on monitor or desk arm.</li>
+        </ol>
+        <h3>OBS Configuration</h3>
+        <ol>
+          <li>Add a <strong>Video Capture Device</strong> source → select <em>Elgato Facecam</em>.</li>
+          <li>Set to <strong>1920 × 1080 @ 60 fps</strong>, YUY2 format for zero compression.</li>
+          <li>In Camera Hub: disable auto-exposure, lock to manual, set exposure and ISO for your lights.</li>
+        </ol>
+        <div class="tip"><strong>💡 Tip:</strong> The Sony STARVIS sensor excels in low light — if you're running lower-wattage lights, this camera handles it better than the Brio.</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span>🎥</span> How to use the Sony ZV-1 <span class="arrow">▶</span></summary>
+      <div class="card-body">
+        <h3>Setup</h3>
+        <ol>
+          <li>Connect the Sony ZV-1 via Micro-HDMI → HDMI cable into the <strong>Elgato Cam Link 4K</strong> capture card.</li>
+          <li>Set the ZV-1: <strong>Menu → HDMI Settings → HDMI Output → Clean HDMI (Off)</strong> (disables on-screen info overlay).</li>
+          <li>Set Video Out: 1080p 30fps or 4K 30fps.</li>
+          <li>Keep the camera plugged in via USB for continuous power (prevents auto-shutdown).</li>
+        </ol>
+        <h3>OBS Configuration</h3>
+        <ol>
+          <li>Add a <strong>Video Capture Device</strong> source → select <em>Elgato 4K Capture</em>.</li>
+          <li>Resolution: match camera output (1080p30 or 4K30).</li>
+          <li>Set camera exposure manually: ISO 400–800, aperture wide (f/1.8–2.8), shutter 1/60.</li>
+        </ol>
+        <div class="tip"><strong>💡 Tip:</strong> Enable <strong>Product Showcase</strong> mode on the ZV-1 for quick focus shifts when demonstrating items to camera.</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span>🌐</span> How to use the Insta360 <span class="arrow">▶</span></summary>
+      <div class="card-body">
+        <h3>Setup</h3>
+        <ol>
+          <li>Charge the camera fully before a shoot.</li>
+          <li>Insert a fast microSD card (V30 or higher for 5.7K).</li>
+          <li>Mount on a selfie stick, tripod, or use the invisible selfie stick technique for immersive shots.</li>
+        </ol>
+        <h3>Shooting B-Roll</h3>
+        <ol>
+          <li>Select <strong>360°</strong> mode for room tours (reframe in post).</li>
+          <li>Select <strong>Single Lens</strong> mode for normal wide-angle B-roll.</li>
+          <li>Use <strong>FlowState stabilisation</strong> for handheld walking shots.</li>
+        </ol>
+        <h3>Post-Processing</h3>
+        <ol>
+          <li>Import footage into <strong>Insta360 Studio</strong>.</li>
+          <li>Use the keyframe reframe tool to pan and tilt within the 360° sphere.</li>
+          <li>Export as standard MP4 for DaVinci Resolve editing.</li>
+        </ol>
+        <div class="tip"><strong>💡 Tip:</strong> For studio setup tours, record 360° at 5.7K and reframe during edit — no need to plan camera angles in advance.</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span>🔘</span> How to use the Logitech C720 <span class="arrow">▶</span></summary>
+      <div class="card-body">
+        <h3>Setup</h3>
+        <ol>
+          <li>Plug USB-A into workstation — no driver required on Windows 10/11.</li>
+          <li>Mount on a secondary monitor or position as a wide-angle room camera.</li>
+        </ol>
+        <h3>OBS Configuration</h3>
+        <ol>
+          <li>Add <strong>Video Capture Device</strong> → select <em>Logitech HD Webcam C720</em>.</li>
+          <li>Set to <strong>1920 × 1080 @ 30 fps</strong>.</li>
+          <li>Use as a secondary camera angle in a multi-cam OBS scene.</li>
+        </ol>
+        <div class="tip"><strong>💡 Tip:</strong> Great as a wide-room shot for reaction content — combine with the Brio or ZV-1 close-up in an OBS multi-view scene.</div>
+      </div>
+    </details>
+
+    <!-- ── STREAM DECKS ── -->
+    <p class="section-title">🎛️ Stream Decks &amp; Controllers</p>
+
+    <details class="card">
+      <summary><span>🟦</span> How to use the Stream Deck XL <span class="arrow">▶</span></summary>
+      <div class="card-body">
+        <h3>Setup</h3>
+        <ol>
+          <li>Install <strong>Elgato Stream Deck software</strong> from elgato.com/en/downloads.</li>
+          <li>Connect via USB-C — the software will detect the device automatically.</li>
+        </ol>
+        <h3>Key Profiles to Create</h3>
+        <ul>
+          <li><strong>OBS Profile:</strong> scene switching, recording start/stop, mic mute toggle</li>
+          <li><strong>DaVinci Profile:</strong> play/pause, in/out points, colour grade presets</li>
+          <li><strong>System Profile:</strong> volume, mute speakers, open apps, lock screen</li>
+        </ul>
+        <h3>Assigning Keys</h3>
+        <ol>
+          <li>Drag <strong>OBS Studio → Switch Scene</strong> action to a key slot.</li>
+          <li>Click the key to set the scene name and upload a custom icon.</li>
+          <li>Use the <strong>Multi-Action</strong> action to chain multiple commands to one key.</li>
+        </ol>
+        <div class="tip"><strong>💡 Tip:</strong> Use the <strong>Folder</strong> action to create sub-pages per app — keeps the 32-key surface uncluttered.</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span>🟪</span> How to use the Stream Deck + <span class="arrow">▶</span></summary>
+      <div class="card-body">
+        <h3>Setup</h3>
+        <ol>
+          <li>Same installation as Stream Deck XL — software detects both devices simultaneously.</li>
+          <li>Connect via USB-C.</li>
+        </ol>
+        <h3>Dial Setup</h3>
+        <ol>
+          <li>Assign <strong>System → Volume</strong> to one dial for master audio control.</li>
+          <li>Assign <strong>OBS → Source Volume</strong> to dials for individual audio source levels.</li>
+          <li>In DaVinci Resolve: assign dial to <strong>Keyboard Shortcut</strong> actions for colour wheel adjustments.</li>
+        </ol>
+        <div class="tip"><strong>💡 Tip:</strong> The touch strip on each dial allows fine scrubbing — assign it to timeline position in DaVinci Resolve for surgical cuts.</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span>📱</span> How to use Stream Deck Mobile <span class="arrow">▶</span></summary>
+      <div class="card-body">
+        <h3>Setup</h3>
+        <ol>
+          <li>Install the <strong>Stream Deck Mobile</strong> app from the App Store or Google Play.</li>
+          <li>Ensure your phone and workstation are on the same Wi-Fi network.</li>
+          <li>Open the Stream Deck desktop software → the mobile device will appear automatically.</li>
+        </ol>
+        <h3>Useful Actions</h3>
+        <ul>
+          <li>Start / Stop recording remotely (e.g. when camera is across the room)</li>
+          <li>Teleprompter scroll speed control</li>
+          <li>Music playback next/pause/previous</li>
+          <li>Presentation slide forward/back</li>
+        </ul>
+        <div class="tip"><strong>💡 Tip:</strong> Mount your phone on a stand beside the camera for hands-free recording control without walking back to the desk.</div>
+      </div>
+    </details>
+
+    <!-- ── INPUT DEVICES ── -->
+    <p class="section-title">🖱️ Input Devices</p>
+
+    <details class="card">
+      <summary><span>✍️</span> How to use the Huion Drawing Canvas <span class="arrow">▶</span></summary>
+      <div class="card-body">
+        <h3>Setup</h3>
+        <ol>
+          <li>Connect via USB-C and install the <strong>Huion driver</strong> from huion.com/drivers.</li>
+          <li>Open the Huion tablet settings and map the active area to your primary monitor.</li>
+          <li>Calibrate pen pressure in the driver settings.</li>
+        </ol>
+        <h3>Use in Studio Workflow</h3>
+        <ul>
+          <li><strong>OBS annotation:</strong> Use with a transparent drawing overlay during screen recordings</li>
+          <li><strong>DaVinci Resolve:</strong> Draw masks and power windows with pen precision</li>
+          <li><strong>Whiteboard videos:</strong> Draw explanatory diagrams live on a blank canvas scene</li>
+        </ul>
+        <div class="tip"><strong>💡 Tip:</strong> Assign the Express Keys to Undo (Ctrl+Z), Undo History, Brush Size Up/Down for fast diagram work.</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span>🖱️</span> How to use the Logitech MX Ergo <span class="arrow">▶</span></summary>
+      <div class="card-body">
+        <h3>Setup</h3>
+        <ol>
+          <li>Pair via Bluetooth or plug in the Unifying USB receiver.</li>
+          <li>Set the tilt angle to <strong>20°</strong> for reduced wrist strain during long editing sessions.</li>
+          <li>Install <strong>Logi Options+</strong> to configure button assignments per application.</li>
+        </ol>
+        <h3>Recommended Button Mappings</h3>
+        <ul>
+          <li><strong>Thumb button:</strong> Middle click (paste / open new tab)</li>
+          <li><strong>Precision toggle:</strong> Switch between fast navigation DPI and slow precise DPI</li>
+          <li><strong>Back/Forward:</strong> Timeline undo/redo in DaVinci or browser history</li>
+        </ul>
+        <div class="tip"><strong>💡 Tip:</strong> The precision toggle halves the DPI for pixel-perfect colour grade adjustments — hold it while dragging colour wheels.</div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span>🚀</span> How to use the Space Mouse (3Dconnexion) <span class="arrow">▶</span></summary>
+      <div class="card-body">
+        <h3>Setup</h3>
+        <ol>
+          <li>Connect via USB and install the <strong>3Dconnexion driver</strong> from 3dconnexion.com.</li>
+          <li>Open <strong>3Dconnexion Settings</strong> to assign app-specific axis sensitivity.</li>
+        </ol>
+        <h3>Applications in Studio Workflow</h3>
+        <ul>
+          <li><strong>Blender:</strong> Rotate, pan, and zoom 3D viewport hands-free while the regular mouse selects objects</li>
+          <li><strong>DaVinci Resolve:</strong> Map left/right tilt to timeline zoom in/out</li>
+          <li><strong>Premiere Pro:</strong> Push/pull axis for timeline scrubbing</li>
+        </ul>
+        <div class="tip"><strong>💡 Tip:</strong> Reduce sensitivity to 30% in 3D apps for precise control — high sensitivity makes it hard to hold still on a single axis.</div>
+      </div>
+    </details>
+
+  </div>
+
+  <footer>
+    Studio · Formula · Petersfield Mansions ·
+    <a href="https://github.com/rifaterdemsahin/studio" target="_blank" rel="noopener">🐙 GitHub</a> ·
+    <a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener">▶️ YouTube</a>
+  </footer>
+
+  <script>
+    // Highlight active nav link
+    document.querySelectorAll('nav a').forEach(a => {
+      if (a.getAttribute('href') === 'index.html') a.classList.add('active');
+    });
+  </script>
+</body>
+</html>

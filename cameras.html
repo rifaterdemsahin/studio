@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cameras — Studio</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      min-height: 100vh;
+    }
+    nav {
+      background: #161b22;
+      border-bottom: 1px solid #30363d;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav .brand {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #58a6ff;
+      padding: 1rem 1rem 1rem 0;
+      text-decoration: none;
+      margin-right: 1rem;
+      white-space: nowrap;
+    }
+    nav a {
+      color: #8b949e;
+      text-decoration: none;
+      padding: 1rem 0.75rem;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    nav a:hover, nav a.active { color: #c9d1d9; border-bottom: 2px solid #58a6ff; }
+
+    .page-header {
+      text-align: center;
+      padding: 3rem 1.5rem 1.5rem;
+    }
+    .page-header h1 { font-size: 2rem; color: #e6edf3; margin-bottom: 0.5rem; }
+    .page-header p { color: #8b949e; font-size: 1rem; max-width: 560px; margin: 0 auto; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.25rem;
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .card:hover { border-color: #58a6ff; transform: translateY(-2px); }
+    .card .icon { font-size: 2.5rem; }
+    .card h2 { font-size: 1.1rem; font-weight: 600; color: #e6edf3; }
+    .card .badge {
+      display: inline-block;
+      background: #1f2d3d;
+      color: #58a6ff;
+      border: 1px solid #30363d;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      padding: 0.1em 0.55em;
+      margin-right: 0.3rem;
+    }
+    .card p { font-size: 0.875rem; color: #8b949e; line-height: 1.6; }
+    .specs { margin-top: 0.5rem; }
+    .specs dt { font-size: 0.8rem; color: #58a6ff; font-weight: 600; margin-top: 0.4rem; }
+    .specs dd { font-size: 0.8rem; color: #8b949e; margin-left: 0.75rem; }
+
+    .use-case {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 0.65rem 0.85rem;
+      font-size: 0.8rem;
+      color: #8b949e;
+    }
+    .use-case strong { color: #e6edf3; }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: #484f58;
+      border-top: 1px solid #21262d;
+    }
+    footer a { color: #58a6ff; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="brand">🎬 Studio</a>
+    <a href="markdown_renderer.html?file=1_Real_Unknown/README.md">1 · Unknown</a>
+    <a href="markdown_renderer.html?file=2_Environment/README.md">2 · Environment</a>
+    <a href="3_Simulation/carousel.html">3 · Simulation</a>
+    <a href="4_Formula/index.html">4 · Formula</a>
+    <a href="cameras.html" class="active">📷 Cameras</a>
+    <a href="gear.html">🎛️ Gear</a>
+    <a href="5_Symbols/petersfield_v2_studio.html">🏗️ Blueprint</a>
+    <a href="7_Testing_Known/index.html">✅ Testing</a>
+    <a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener">▶️ YouTube</a>
+    <a href="https://github.com/rifaterdemsahin/studio" target="_blank" rel="noopener">🐙 GitHub</a>
+  </nav>
+
+  <div class="page-header">
+    <h1>📷 Cameras</h1>
+    <p>All cameras used in the Petersfield Mansions studio — specs, use cases, and setup tips.</p>
+  </div>
+
+  <div class="grid">
+
+    <!-- Logitech Brio 4K -->
+    <div class="card">
+      <div class="icon">🔵</div>
+      <h2>Logitech Brio 4K</h2>
+      <div>
+        <span class="badge">Webcam</span>
+        <span class="badge">4K</span>
+        <span class="badge">USB-C</span>
+      </div>
+      <p>Flagship USB webcam with 4K 30 fps, HDR support, and Windows Hello infrared. Ideal as a primary talking-head camera mounted on a monitor arm.</p>
+      <dl class="specs">
+        <dt>Resolution</dt><dd>3840 × 2160 @ 30 fps · 1080p @ 90 fps</dd>
+        <dt>Field of View</dt><dd>65° / 78° / 90° (adjustable)</dd>
+        <dt>Connection</dt><dd>USB-C (USB-A adapter included)</dd>
+        <dt>Best for</dt><dd>Primary talking-head, video calls, YouTube recording</dd>
+      </dl>
+      <div class="use-case"><strong>🎯 Studio role:</strong> Main on-screen camera, mounted above the primary monitor for eye-level framing.</div>
+    </div>
+
+    <!-- Elgato Facecam -->
+    <div class="card">
+      <div class="icon">⚡</div>
+      <h2>Elgato Facecam</h2>
+      <div>
+        <span class="badge">Webcam</span>
+        <span class="badge">1080p 60fps</span>
+        <span class="badge">USB-C</span>
+      </div>
+      <p>Creator-focused 1080p 60 fps webcam with Sony STARVIS sensor, fixed-focus lens, and zero-compression signal. Deep integration with Elgato's Camera Hub software.</p>
+      <dl class="specs">
+        <dt>Resolution</dt><dd>1920 × 1080 @ 60 fps</dd>
+        <dt>Sensor</dt><dd>Sony STARVIS (low-light optimised)</dd>
+        <dt>Connection</dt><dd>USB-C 3.0</dd>
+        <dt>Best for</dt><dd>Streaming, tutorials, OBS integration</dd>
+      </dl>
+      <div class="use-case"><strong>🎯 Studio role:</strong> Secondary camera or dedicated streaming webcam with smoother motion at 60 fps.</div>
+    </div>
+
+    <!-- Sony ZV-1 -->
+    <div class="card">
+      <div class="icon">🎥</div>
+      <h2>Sony ZV-1</h2>
+      <div>
+        <span class="badge">Compact Camera</span>
+        <span class="badge">4K</span>
+        <span class="badge">HDMI out</span>
+      </div>
+      <p>Compact vlogging camera with 1-inch sensor, fast autofocus, background bokeh, and 4K HDMI clean output. Outstanding image quality for a small form factor.</p>
+      <dl class="specs">
+        <dt>Resolution</dt><dd>4K 30fps · 1080p 120fps slow-mo</dd>
+        <dt>Sensor</dt><dd>1-inch Exmor RS CMOS</dd>
+        <dt>Connection</dt><dd>HDMI micro → capture card</dd>
+        <dt>Best for</dt><dd>Premium talking-head, B-roll, vlogging</dd>
+      </dl>
+      <div class="use-case"><strong>🎯 Studio role:</strong> High-quality primary recording camera via Elgato Cam Link 4K capture card.</div>
+    </div>
+
+    <!-- Insta360 -->
+    <div class="card">
+      <div class="icon">🌐</div>
+      <h2>Insta360</h2>
+      <div>
+        <span class="badge">360°</span>
+        <span class="badge">5.7K</span>
+        <span class="badge">Action</span>
+      </div>
+      <p>360-degree action camera for immersive B-roll, room tours, and unique perspectives. Post-processing in Insta360 Studio allows reframing after shooting.</p>
+      <dl class="specs">
+        <dt>Resolution</dt><dd>5.7K 360° · 4K single-lens</dd>
+        <dt>Stabilisation</dt><dd>FlowState (class-leading)</dd>
+        <dt>Connection</dt><dd>USB-C, Wi-Fi, Bluetooth</dd>
+        <dt>Best for</dt><dd>Room tours, creative B-roll, behind-the-scenes</dd>
+      </dl>
+      <div class="use-case"><strong>🎯 Studio role:</strong> B-roll for studio setup videos and immersive room-tour footage for YouTube.</div>
+    </div>
+
+    <!-- Logitech C720 -->
+    <div class="card">
+      <div class="icon">🔘</div>
+      <h2>Logitech C720</h2>
+      <div>
+        <span class="badge">Webcam</span>
+        <span class="badge">1080p</span>
+        <span class="badge">USB-A</span>
+      </div>
+      <p>Reliable 1080p webcam with autofocus and wide-angle lens. A solid backup or secondary-angle camera that just works without drivers on most systems.</p>
+      <dl class="specs">
+        <dt>Resolution</dt><dd>1920 × 1080 @ 30 fps</dd>
+        <dt>Focus</dt><dd>Autofocus</dd>
+        <dt>Connection</dt><dd>USB-A</dd>
+        <dt>Best for</dt><dd>Secondary angle, backup, wide-room shots</dd>
+      </dl>
+      <div class="use-case"><strong>🎯 Studio role:</strong> Wide room-angle backup camera or guest webcam during collaborative recordings.</div>
+    </div>
+
+  </div>
+
+  <footer>
+    Studio · Cameras · Petersfield Mansions ·
+    <a href="https://github.com/rifaterdemsahin/studio" target="_blank" rel="noopener">🐙 GitHub</a> ·
+    <a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener">▶️ YouTube</a>
+  </footer>
+
+  <script>
+    document.querySelectorAll('nav a').forEach(a => {
+      if (a.getAttribute('href') === 'cameras.html') a.classList.add('active');
+    });
+  </script>
+</body>
+</html>
