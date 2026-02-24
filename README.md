@@ -29,6 +29,7 @@ The structure follows a journey from _unknown problem_ → _understood solution_
 | [index.html](index.html) | Home page with unified navigation |
 | [markdown_renderer.html](markdown_renderer.html) | Render any `.md` file with syntax highlighting |
 | [3_Simulation/carousel.html](3_Simulation/carousel.html) | Image carousel of room-layout mockups |
+| [version.html](version.html) | Current studio version — real photo and metadata |
 
 ---
 
