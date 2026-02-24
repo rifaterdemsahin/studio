@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workstation Environment — Studio</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0d1117; color: #c9d1d9; min-height: 100vh; }
+    nav { background: #161b22; border-bottom: 1px solid #30363d; padding: 0 1.5rem; display: flex; align-items: center; gap: 0; flex-wrap: wrap; position: sticky; top: 0; z-index: 100; }
+    nav .brand { font-weight: 700; font-size: 1.1rem; color: #58a6ff; padding: 1rem 1rem 1rem 0; text-decoration: none; margin-right: 1rem; white-space: nowrap; }
+    nav a { color: #8b949e; text-decoration: none; padding: 1rem 0.75rem; font-size: 0.875rem; transition: color 0.2s; white-space: nowrap; }
+    nav a:hover, nav a.active { color: #c9d1d9; border-bottom: 2px solid #58a6ff; }
+    .page-header { text-align: center; padding: 3rem 1.5rem 1.5rem; }
+    .page-header h1 { font-size: 2rem; color: #e6edf3; margin-bottom: 0.5rem; }
+    .page-header p { color: #8b949e; font-size: 1rem; max-width: 560px; margin: 0 auto; }
+    .content { max-width: 860px; margin: 2rem auto; padding: 0 1.5rem 4rem; }
+    .section { background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 1.5rem; margin-bottom: 1.25rem; }
+    .section h2 { font-size: 1.1rem; color: #e6edf3; margin-bottom: 0.75rem; }
+    .section p, .section li { font-size: 0.9rem; color: #8b949e; line-height: 1.7; }
+    .section ul { padding-left: 1.25rem; }
+    .section ul li { margin-bottom: 0.3rem; }
+    .checklist li { list-style: none; padding-left: 0; }
+    .checklist li::before { content: "☐ "; color: #58a6ff; }
+    .checklist li.done::before { content: "✅ "; }
+    .badge { display: inline-block; background: #1f2d3d; color: #58a6ff; border: 1px solid #30363d; border-radius: 4px; font-size: 0.75rem; padding: 0.1em 0.55em; margin-right: 0.3rem; }
+    footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: #484f58; border-top: 1px solid #21262d; }
+    footer a { color: #58a6ff; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="brand">🎬 Studio</a>
+    <a href="../markdown_renderer.html?file=2_Environment/README.md" class="active">2 · Environment</a>
+    <a href="workstation.html">🖥️ Workstation</a>
+    <a href="room.html">🏠 Room</a>
+    <a href="lights.html">💡 Lights</a>
+    <a href="audio.html">🎙️ Audio</a>
+    <a href="../cameras.html">📷 Cameras</a>
+    <a href="../gear.html">🎛️ Gear</a>
+    <a href="../4_Formula/index.html">🧪 Formula</a>
+    <a href="../7_Testing_Known/index.html">✅ Testing</a>
+  </nav>
+
+  <div class="page-header">
+    <h1>🖥️ Workstation Environment</h1>
+    <p>AMD Ryzen Threadripper 3995X workstation setup — software, peripherals, and OS configuration.</p>
+  </div>
+
+  <div class="content">
+
+    <div class="section">
+      <h2>🔥 Hardware Specs</h2>
+      <ul>
+        <li><span class="badge">CPU</span> AMD Ryzen Threadripper 3995X — 64 cores / 128 threads</li>
+        <li><span class="badge">RAM</span> 64 GB DDR4 ECC</li>
+        <li><span class="badge">GPU</span> AMD Radeon RX 6900 XT (16 GB GDDR6)</li>
+        <li><span class="badge">Storage</span> NVMe SSD for OS + media scratch drive</li>
+        <li><span class="badge">Monitors</span> Multi-monitor setup for simultaneous editing + preview</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>💻 Software Stack</h2>
+      <ul>
+        <li><strong style="color:#e6edf3;">OBS Studio</strong> — recording &amp; live streaming</li>
+        <li><strong style="color:#e6edf3;">DaVinci Resolve</strong> — video editing &amp; colour grading (GPU-accelerated)</li>
+        <li><strong style="color:#e6edf3;">Elgato 4K Capture Utility</strong> — camera capture management</li>
+        <li><strong style="color:#e6edf3;">Stream Deck software</strong> — macro &amp; shortcut configuration</li>
+        <li><strong style="color:#e6edf3;">3Dconnexion driver</strong> — Space Mouse axis mapping</li>
+        <li><strong style="color:#e6edf3;">Huion tablet driver</strong> — pen pressure calibration</li>
+        <li><strong style="color:#e6edf3;">VS Code / GitHub Copilot</strong> — code &amp; script editing</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>✅ Setup Checklist</h2>
+      <ul class="checklist">
+        <li class="done">Install latest AMD chipset + GPU drivers</li>
+        <li class="done">Install OBS Studio and configure scenes</li>
+        <li>Configure DaVinci Resolve GPU acceleration (OpenCL/ROCm)</li>
+        <li>Map Stream Deck XL profiles for OBS, DaVinci, and VS Code</li>
+        <li>Configure Space Mouse 6DoF axis sensitivity</li>
+        <li>Calibrate Huion pen pressure curve</li>
+        <li>Set up multi-monitor display arrangement</li>
+        <li>Configure Windows power plan: High Performance</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>🔗 Environment Links</h2>
+      <ul>
+        <li><a href="room.html" style="color:#58a6ff;">🏠 Room Setup</a> — physical layout and acoustic treatment</li>
+        <li><a href="lights.html" style="color:#58a6ff;">💡 Lights</a> — key light, fill light, colour temperature</li>
+        <li><a href="audio.html" style="color:#58a6ff;">🎙️ Audio</a> — microphone setup and noise floor</li>
+        <li><a href="../gear.html" style="color:#58a6ff;">🎛️ Gear</a> — all hardware overview</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <footer>
+    Studio · Workstation · Petersfield Mansions ·
+    <a href="https://github.com/rifaterdemsahin/studio" target="_blank" rel="noopener">🐙 GitHub</a> ·
+    <a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener">▶️ YouTube</a>
+  </footer>
+</body>
+</html>
