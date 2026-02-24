@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,852 +6,853 @@
 <title>The Studio Blueprint</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  /* ── Shared Navigation ── */
-  nav {
-    background: #161b22;
-    border-bottom: 1px solid #30363d;
-    padding: 0 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0;
-    flex-wrap: wrap;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* NUCLEAR RESET — scoped to #studio-root to override any parent styles */
+  #studio-root,
+  #studio-root * {
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    font-family: 'DM Sans', sans-serif !important;
+    color: inherit !important;
+    text-decoration: none !important;
+    list-style: none !important;
+    border: none !important;
+    background: none !important;
+    line-height: inherit !important;
+    font-size: inherit !important;
+    font-weight: inherit !important;
   }
-  nav .brand {
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: #58a6ff;
-    padding: 1rem 1rem 1rem 0;
-    text-decoration: none;
-    margin-right: 1rem;
-    white-space: nowrap;
+
+  /* Force body/html to not interfere */
+  html, body {
+    background: #0a0a0a !important;
+    overflow-x: hidden !important;
   }
-  nav a {
-    color: #8b949e;
-    text-decoration: none;
-    padding: 1rem 0.75rem;
-    font-size: 0.875rem;
-    transition: color 0.2s;
-    white-space: nowrap;
+
+  /* Hide anything outside our root that the parent injects */
+  body > *:not(#studio-root):not(script):not(style):not(link) {
+    display: none !important;
   }
-  nav a:hover, nav a.active {
-    color: #c9d1d9;
-    border-bottom: 2px solid #58a6ff;
-  }
-</style>
-<style>
-  :root {
+
+  /* ========================
+     DESIGN SYSTEM
+  ======================== */
+  #studio-root {
     --bg: #0a0a0a;
     --surface: #111111;
     --surface2: #181818;
     --accent: #e8ff00;
     --accent2: #ff4d00;
     --text: #f0f0f0;
-    --muted: #666;
-    --border: #222;
+    --muted: #666666;
+    --border: #222222;
+
+    display: block !important;
+    background: #0a0a0a !important;
+    color: #f0f0f0 !important;
+    font-family: 'DM Sans', sans-serif !important;
+    overflow-x: hidden !important;
+    line-height: 1.5 !important;
+    font-size: 16px !important;
   }
 
-- { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-background: var(–bg);
-color: var(–text);
-font-family: ‘DM Sans’, sans-serif;
-overflow-x: hidden;
-}
-
-/* HERO */
-.hero {
-min-height: 100vh;
-display: flex;
-flex-direction: column;
-justify-content: center;
-padding: 80px 60px;
-position: relative;
-border-bottom: 1px solid var(–border);
-overflow: hidden;
-}
-
-.hero::before {
-content: ‘’;
-position: absolute;
-top: -200px;
-right: -200px;
-width: 600px;
-height: 600px;
-background: radial-gradient(circle, rgba(232,255,0,0.06) 0%, transparent 70%);
-pointer-events: none;
-}
-
-.hero-tag {
-font-family: ‘Space Mono’, monospace;
-font-size: 11px;
-color: var(–accent);
-letter-spacing: 4px;
-text-transform: uppercase;
-margin-bottom: 32px;
-opacity: 0;
-animation: fadeUp 0.6s ease forwards 0.2s;
-}
-
-.hero h1 {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: clamp(72px, 12vw, 160px);
-line-height: 0.9;
-letter-spacing: -2px;
-opacity: 0;
-animation: fadeUp 0.8s ease forwards 0.4s;
-}
-
-.hero h1 span {
-color: var(–accent);
-display: block;
-}
-
-.hero-sub {
-font-family: ‘DM Sans’, sans-serif;
-font-size: 18px;
-font-weight: 300;
-color: var(–muted);
-margin-top: 40px;
-max-width: 500px;
-line-height: 1.7;
-opacity: 0;
-animation: fadeUp 0.8s ease forwards 0.7s;
-}
-
-.hero-stats {
-display: flex;
-gap: 60px;
-margin-top: 80px;
-opacity: 0;
-animation: fadeUp 0.8s ease forwards 1s;
-}
-
-.stat-item {
-display: flex;
-flex-direction: column;
-}
-
-.stat-num {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 48px;
-color: var(–accent);
-line-height: 1;
-}
-
-.stat-label {
-font-family: ‘Space Mono’, monospace;
-font-size: 10px;
-color: var(–muted);
-letter-spacing: 2px;
-text-transform: uppercase;
-margin-top: 4px;
-}
-
-/* FLOOR PLAN SECTION */
-.section {
-padding: 100px 60px;
-border-bottom: 1px solid var(–border);
-}
-
-.section-tag {
-font-family: ‘Space Mono’, monospace;
-font-size: 10px;
-color: var(–accent);
-letter-spacing: 4px;
-text-transform: uppercase;
-margin-bottom: 60px;
-display: flex;
-align-items: center;
-gap: 16px;
-}
-
-.section-tag::after {
-content: ‘’;
-flex: 1;
-height: 1px;
-background: var(–border);
-max-width: 200px;
-}
-
-.section-title {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: clamp(48px, 6vw, 80px);
-line-height: 1;
-margin-bottom: 60px;
-}
-
-/* FLOOR PLAN VISUAL */
-.floorplan {
-background: var(–surface);
-border: 1px solid var(–border);
-padding: 60px;
-position: relative;
-overflow: hidden;
-}
-
-.floorplan::before {
-content: ‘’;
-position: absolute;
-inset: 0;
-background-image:
-linear-gradient(rgba(232,255,0,0.03) 1px, transparent 1px),
-linear-gradient(90deg, rgba(232,255,0,0.03) 1px, transparent 1px);
-background-size: 30px 30px;
-}
-
-.room-grid {
-display: grid;
-grid-template-columns: 1fr 2fr;
-gap: 2px;
-max-width: 700px;
-position: relative;
-z-index: 1;
-}
-
-.room-block {
-background: var(–surface2);
-border: 1px solid #2a2a2a;
-padding: 24px;
-position: relative;
-transition: border-color 0.3s;
-}
-
-.room-block:hover {
-border-color: var(–accent);
-}
-
-.room-block.main {
-grid-column: 2;
-grid-row: 1 / 3;
-padding: 40px;
-}
-
-.room-block.alcove {
-grid-column: 1;
-grid-row: 1 / 3;
-}
-
-.room-label {
-font-family: ‘Space Mono’, monospace;
-font-size: 9px;
-color: var(–accent);
-letter-spacing: 3px;
-text-transform: uppercase;
-margin-bottom: 12px;
-}
-
-.room-name {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 28px;
-margin-bottom: 8px;
-}
-
-.room-desc {
-font-size: 13px;
-color: var(–muted);
-line-height: 1.6;
-}
-
-.room-dim {
-font-family: ‘Space Mono’, monospace;
-font-size: 10px;
-color: #444;
-margin-top: 16px;
-}
-
-/* DESK ZONES */
-.desk-zones {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 1px;
-background: var(–border);
-margin-top: 60px;
-}
-
-.zone {
-background: var(–bg);
-padding: 40px 32px;
-position: relative;
-overflow: hidden;
-transition: background 0.3s;
-}
-
-.zone:hover {
-background: var(–surface);
-}
-
-.zone::before {
-content: attr(data-num);
-position: absolute;
-top: -20px;
-right: -10px;
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 120px;
-color: rgba(255,255,255,0.03);
-line-height: 1;
-pointer-events: none;
-}
-
-.zone-label {
-font-family: ‘Space Mono’, monospace;
-font-size: 9px;
-color: var(–accent2);
-letter-spacing: 3px;
-text-transform: uppercase;
-margin-bottom: 20px;
-}
-
-.zone-title {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 36px;
-margin-bottom: 16px;
-line-height: 1;
-}
-
-.zone-desc {
-font-size: 14px;
-color: var(–muted);
-line-height: 1.7;
-}
-
-.zone-spec {
-font-family: ‘Space Mono’, monospace;
-font-size: 11px;
-color: var(–accent);
-margin-top: 20px;
-padding-top: 20px;
-border-top: 1px solid var(–border);
-}
-
-/* CAMERA SETUP */
-.camera-section {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 60px;
-align-items: start;
-}
-
-.camera-visual {
-background: var(–surface);
-border: 1px solid var(–border);
-padding: 48px;
-position: relative;
-}
-
-.depth-diagram {
-display: flex;
-align-items: center;
-gap: 0;
-margin: 40px 0;
-position: relative;
-}
-
-.depth-point {
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 8px;
-position: relative;
-z-index: 1;
-}
-
-.depth-dot {
-width: 12px;
-height: 12px;
-border-radius: 50%;
-background: var(–accent);
-}
-
-.depth-dot.camera { background: var(–accent2); }
-.depth-dot.screen { background: #4488ff; }
-
-.depth-line {
-flex: 1;
-height: 1px;
-background: var(–border);
-position: relative;
-}
-
-.depth-line::after {
-content: attr(data-dist);
-position: absolute;
-top: -20px;
-left: 50%;
-transform: translateX(-50%);
-font-family: ‘Space Mono’, monospace;
-font-size: 10px;
-color: var(–accent);
-white-space: nowrap;
-}
-
-.depth-label {
-font-family: ‘Space Mono’, monospace;
-font-size: 9px;
-color: var(–muted);
-text-align: center;
-max-width: 60px;
-line-height: 1.4;
-}
-
-/* WEEKLY SCHEDULE */
-.schedule-grid {
-display: grid;
-grid-template-columns: repeat(7, 1fr);
-gap: 1px;
-background: var(–border);
-}
-
-.day-card {
-background: var(–bg);
-padding: 32px 20px;
-transition: background 0.3s;
-cursor: default;
-}
-
-.day-card:hover {
-background: var(–surface2);
-}
-
-.day-card.highlight {
-background: var(–surface);
-}
-
-.day-name {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 28px;
-color: var(–muted);
-margin-bottom: 16px;
-display: block;
-}
-
-.day-card.highlight .day-name {
-color: var(–accent);
-}
-
-.day-task {
-font-size: 12px;
-color: var(–muted);
-line-height: 1.6;
-margin-bottom: 12px;
-}
-
-.day-tag {
-font-family: ‘Space Mono’, monospace;
-font-size: 9px;
-color: var(–accent2);
-letter-spacing: 2px;
-text-transform: uppercase;
-display: inline-block;
-padding: 3px 8px;
-border: 1px solid var(–accent2);
-opacity: 0.7;
-}
-
-/* STRATEGY SECTION */
-.strategy-list {
-list-style: none;
-display: flex;
-flex-direction: column;
-gap: 1px;
-background: var(–border);
-}
-
-.strategy-item {
-background: var(–bg);
-padding: 32px 40px;
-display: flex;
-gap: 40px;
-align-items: flex-start;
-transition: background 0.3s;
-}
-
-.strategy-item:hover {
-background: var(–surface);
-}
-
-.strategy-num {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 48px;
-color: var(–border);
-line-height: 1;
-min-width: 60px;
-transition: color 0.3s;
-}
-
-.strategy-item:hover .strategy-num {
-color: var(–accent);
-}
-
-.strategy-content h3 {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 28px;
-margin-bottom: 10px;
-letter-spacing: 1px;
-}
-
-.strategy-content p {
-font-size: 14px;
-color: var(–muted);
-line-height: 1.7;
-max-width: 600px;
-}
-
-/* FOOTER */
-footer {
-padding: 60px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-border-top: 1px solid var(–border);
-}
-
-.footer-brand {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 32px;
-color: var(–muted);
-}
-
-.footer-note {
-font-family: ‘Space Mono’, monospace;
-font-size: 10px;
-color: #333;
-letter-spacing: 2px;
-}
-
-/* ANIMATIONS */
-@keyframes fadeUp {
-from { opacity: 0; transform: translateY(30px); }
-to { opacity: 1; transform: translateY(0); }
-}
-
-.reveal {
-opacity: 0;
-transform: translateY(20px);
-transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.reveal.visible {
-opacity: 1;
-transform: translateY(0);
-}
-
-/* HIGHLIGHT PILL */
-.pill {
-display: inline-block;
-background: var(–accent);
-color: var(–bg);
-font-family: ‘Space Mono’, monospace;
-font-size: 10px;
-font-weight: 700;
-letter-spacing: 2px;
-text-transform: uppercase;
-padding: 4px 12px;
-margin-left: 12px;
-vertical-align: middle;
-}
-
-@media (max-width: 768px) {
-.hero { padding: 60px 24px; }
-.section { padding: 60px 24px; }
-.desk-zones { grid-template-columns: 1fr; }
-.schedule-grid { grid-template-columns: repeat(2, 1fr); }
-.camera-section { grid-template-columns: 1fr; }
-.hero-stats { gap: 32px; flex-wrap: wrap; }
-footer { flex-direction: column; gap: 20px; text-align: center; }
-}
+  /* ========================
+     HERO
+  ======================== */
+  #studio-root .s-hero {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    min-height: 100vh !important;
+    padding: 80px 60px !important;
+    position: relative !important;
+    border-bottom: 1px solid #222 !important;
+    overflow: hidden !important;
+    background: #0a0a0a !important;
+  }
+
+  #studio-root .s-hero::before {
+    content: '' !important;
+    position: absolute !important;
+    top: -200px !important;
+    right: -200px !important;
+    width: 600px !important;
+    height: 600px !important;
+    background: radial-gradient(circle, rgba(232,255,0,0.06) 0%, transparent 70%) !important;
+    pointer-events: none !important;
+  }
+
+  #studio-root .s-tag {
+    display: block !important;
+    font-family: 'Space Mono', monospace !important;
+    font-size: 11px !important;
+    color: #e8ff00 !important;
+    letter-spacing: 4px !important;
+    text-transform: uppercase !important;
+    margin-bottom: 32px !important;
+    opacity: 0 !important;
+    animation: sStudioFadeUp 0.6s ease forwards 0.2s !important;
+  }
+
+  #studio-root .s-hero h1 {
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-size: clamp(72px, 12vw, 160px) !important;
+    line-height: 0.9 !important;
+    letter-spacing: -2px !important;
+    color: #f0f0f0 !important;
+    opacity: 0 !important;
+    animation: sStudioFadeUp 0.8s ease forwards 0.4s !important;
+  }
+
+  #studio-root .s-hero h1 span {
+    color: #e8ff00 !important;
+    display: block !important;
+  }
+
+  #studio-root .s-hero-sub {
+    font-size: 18px !important;
+    font-weight: 300 !important;
+    color: #666 !important;
+    margin-top: 40px !important;
+    max-width: 500px !important;
+    line-height: 1.7 !important;
+    opacity: 0 !important;
+    animation: sStudioFadeUp 0.8s ease forwards 0.7s !important;
+  }
+
+  #studio-root .s-hero-stats {
+    display: flex !important;
+    gap: 60px !important;
+    margin-top: 80px !important;
+    flex-wrap: wrap !important;
+    opacity: 0 !important;
+    animation: sStudioFadeUp 0.8s ease forwards 1s !important;
+  }
+
+  #studio-root .s-stat {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  #studio-root .s-stat-num {
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-size: 48px !important;
+    color: #e8ff00 !important;
+    line-height: 1 !important;
+  }
+
+  #studio-root .s-stat-label {
+    font-family: 'Space Mono', monospace !important;
+    font-size: 10px !important;
+    color: #666 !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+    margin-top: 4px !important;
+  }
+
+  /* ========================
+     SECTIONS
+  ======================== */
+  #studio-root .s-section {
+    display: block !important;
+    padding: 100px 60px !important;
+    border-bottom: 1px solid #222 !important;
+    background: #0a0a0a !important;
+  }
+
+  #studio-root .s-section-tag {
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+    font-family: 'Space Mono', monospace !important;
+    font-size: 10px !important;
+    color: #e8ff00 !important;
+    letter-spacing: 4px !important;
+    text-transform: uppercase !important;
+    margin-bottom: 60px !important;
+  }
+
+  #studio-root .s-section-tag::after {
+    content: '' !important;
+    flex: 1 !important;
+    height: 1px !important;
+    background: #222 !important;
+    max-width: 200px !important;
+    display: block !important;
+  }
+
+  #studio-root .s-section-title {
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-size: clamp(48px, 6vw, 80px) !important;
+    line-height: 1 !important;
+    color: #f0f0f0 !important;
+    margin-bottom: 60px !important;
+  }
+
+  /* ========================
+     FLOOR PLAN
+  ======================== */
+  #studio-root .s-floorplan {
+    display: block !important;
+    background: #111 !important;
+    border: 1px solid #222 !important;
+    padding: 60px !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  #studio-root .s-floorplan::before {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background-image:
+      linear-gradient(rgba(232,255,0,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,255,0,0.03) 1px, transparent 1px) !important;
+    background-size: 30px 30px !important;
+    pointer-events: none !important;
+  }
+
+  #studio-root .s-room-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 2fr !important;
+    gap: 2px !important;
+    max-width: 700px !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  #studio-root .s-room-block {
+    display: block !important;
+    background: #181818 !important;
+    border: 1px solid #2a2a2a !important;
+    padding: 24px !important;
+    transition: border-color 0.3s !important;
+  }
+
+  #studio-root .s-room-block:hover {
+    border-color: #e8ff00 !important;
+  }
+
+  #studio-root .s-room-block.main {
+    grid-column: 2 !important;
+    grid-row: 1 / 3 !important;
+    padding: 40px !important;
+  }
+
+  #studio-root .s-room-block.alcove {
+    grid-column: 1 !important;
+    grid-row: 1 / 3 !important;
+  }
+
+  #studio-root .s-room-label {
+    display: block !important;
+    font-family: 'Space Mono', monospace !important;
+    font-size: 9px !important;
+    color: #e8ff00 !important;
+    letter-spacing: 3px !important;
+    text-transform: uppercase !important;
+    margin-bottom: 12px !important;
+  }
+
+  #studio-root .s-room-name {
+    display: block !important;
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-size: 28px !important;
+    color: #f0f0f0 !important;
+    margin-bottom: 8px !important;
+  }
+
+  #studio-root .s-room-desc {
+    display: block !important;
+    font-size: 13px !important;
+    color: #666 !important;
+    line-height: 1.6 !important;
+  }
+
+  #studio-root .s-room-dim {
+    display: block !important;
+    font-family: 'Space Mono', monospace !important;
+    font-size: 10px !important;
+    color: #444 !important;
+    margin-top: 16px !important;
+  }
+
+  /* ========================
+     DESK ZONES
+  ======================== */
+  #studio-root .s-desk-zones {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 1px !important;
+    background: #222 !important;
+    margin-top: 0 !important;
+  }
+
+  #studio-root .s-zone {
+    display: block !important;
+    background: #0a0a0a !important;
+    padding: 40px 32px !important;
+    position: relative !important;
+    overflow: hidden !important;
+    transition: background 0.3s !important;
+  }
+
+  #studio-root .s-zone:hover {
+    background: #111 !important;
+  }
+
+  #studio-root .s-zone::before {
+    content: attr(data-num) !important;
+    position: absolute !important;
+    top: -20px !important;
+    right: -10px !important;
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-size: 120px !important;
+    color: rgba(255,255,255,0.03) !important;
+    line-height: 1 !important;
+    pointer-events: none !important;
+  }
+
+  #studio-root .s-zone-label {
+    display: block !important;
+    font-family: 'Space Mono', monospace !important;
+    font-size: 9px !important;
+    color: #ff4d00 !important;
+    letter-spacing: 3px !important;
+    text-transform: uppercase !important;
+    margin-bottom: 20px !important;
+  }
+
+  #studio-root .s-zone-title {
+    display: block !important;
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-size: 36px !important;
+    color: #f0f0f0 !important;
+    margin-bottom: 16px !important;
+    line-height: 1 !important;
+  }
+
+  #studio-root .s-zone-desc {
+    display: block !important;
+    font-size: 14px !important;
+    color: #666 !important;
+    line-height: 1.7 !important;
+  }
+
+  #studio-root .s-zone-spec {
+    display: block !important;
+    font-family: 'Space Mono', monospace !important;
+    font-size: 11px !important;
+    color: #e8ff00 !important;
+    margin-top: 20px !important;
+    padding-top: 20px !important;
+    border-top: 1px solid #222 !important;
+  }
+
+  /* ========================
+     CAMERA SECTION
+  ======================== */
+  #studio-root .s-camera-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 60px !important;
+    align-items: start !important;
+  }
+
+  #studio-root .s-camera-visual {
+    display: block !important;
+    background: #111 !important;
+    border: 1px solid #222 !important;
+    padding: 48px !important;
+  }
+
+  #studio-root .s-depth-diagram {
+    display: flex !important;
+    align-items: center !important;
+    margin: 40px 0 !important;
+    position: relative !important;
+  }
+
+  #studio-root .s-depth-point {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 8px !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  #studio-root .s-depth-dot {
+    display: block !important;
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 50% !important;
+    background: #e8ff00 !important;
+    flex-shrink: 0 !important;
+  }
+
+  #studio-root .s-depth-dot.camera { background: #ff4d00 !important; }
+  #studio-root .s-depth-dot.screen { background: #4488ff !important; }
+
+  #studio-root .s-depth-line {
+    flex: 1 !important;
+    height: 1px !important;
+    background: #222 !important;
+    position: relative !important;
+    display: block !important;
+  }
+
+  #studio-root .s-depth-line::after {
+    content: attr(data-dist) !important;
+    position: absolute !important;
+    top: -20px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    font-family: 'Space Mono', monospace !important;
+    font-size: 10px !important;
+    color: #e8ff00 !important;
+    white-space: nowrap !important;
+  }
+
+  #studio-root .s-depth-label {
+    font-family: 'Space Mono', monospace !important;
+    font-size: 9px !important;
+    color: #666 !important;
+    text-align: center !important;
+    max-width: 60px !important;
+    line-height: 1.4 !important;
+  }
+
+  /* ========================
+     STRATEGY LIST
+  ======================== */
+  #studio-root .s-strategy-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1px !important;
+    background: #222 !important;
+  }
+
+  #studio-root .s-strategy-item {
+    display: flex !important;
+    gap: 40px !important;
+    align-items: flex-start !important;
+    background: #0a0a0a !important;
+    padding: 32px 40px !important;
+    transition: background 0.3s !important;
+  }
+
+  #studio-root .s-strategy-item:hover {
+    background: #111 !important;
+  }
+
+  #studio-root .s-strategy-num {
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-size: 48px !important;
+    color: #222 !important;
+    line-height: 1 !important;
+    min-width: 60px !important;
+    transition: color 0.3s !important;
+    display: block !important;
+  }
+
+  #studio-root .s-strategy-item:hover .s-strategy-num {
+    color: #e8ff00 !important;
+  }
+
+  #studio-root .s-strategy-content h3 {
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-size: 28px !important;
+    color: #f0f0f0 !important;
+    margin-bottom: 10px !important;
+    letter-spacing: 1px !important;
+  }
+
+  #studio-root .s-strategy-content p {
+    font-size: 14px !important;
+    color: #666 !important;
+    line-height: 1.7 !important;
+    max-width: 600px !important;
+  }
+
+  /* ========================
+     SCHEDULE
+  ======================== */
+  #studio-root .s-schedule-grid {
+    display: grid !important;
+    grid-template-columns: repeat(7, 1fr) !important;
+    gap: 1px !important;
+    background: #222 !important;
+  }
+
+  #studio-root .s-day {
+    display: block !important;
+    background: #0a0a0a !important;
+    padding: 32px 20px !important;
+    transition: background 0.3s !important;
+  }
+
+  #studio-root .s-day:hover,
+  #studio-root .s-day.hi {
+    background: #111 !important;
+  }
+
+  #studio-root .s-day-name {
+    display: block !important;
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-size: 28px !important;
+    color: #666 !important;
+    margin-bottom: 16px !important;
+    line-height: 1 !important;
+  }
+
+  #studio-root .s-day.hi .s-day-name {
+    color: #e8ff00 !important;
+  }
+
+  #studio-root .s-day-task {
+    display: block !important;
+    font-size: 12px !important;
+    color: #666 !important;
+    line-height: 1.6 !important;
+    margin-bottom: 12px !important;
+  }
+
+  #studio-root .s-day-tag {
+    display: inline-block !important;
+    font-family: 'Space Mono', monospace !important;
+    font-size: 9px !important;
+    color: #ff4d00 !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+    padding: 3px 8px !important;
+    border: 1px solid #ff4d00 !important;
+    opacity: 0.7 !important;
+  }
+
+  /* ========================
+     CONTENT STRATEGY
+  ======================== */
+  #studio-root .s-angle-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1px !important;
+    background: #222 !important;
+  }
+
+  #studio-root .s-angle-cell {
+    display: block !important;
+    background: #0a0a0a !important;
+    padding: 48px !important;
+  }
+
+  #studio-root .s-angle-cell.full {
+    grid-column: 1 / -1 !important;
+    background: #0d0d0d !important;
+  }
+
+  #studio-root .s-angle-cell p {
+    font-size: 15px !important;
+    line-height: 1.8 !important;
+    color: #666 !important;
+  }
+
+  #studio-root .s-angle-cell p em {
+    color: #f0f0f0 !important;
+    font-style: italic !important;
+  }
+
+  #studio-root .s-body-text {
+    font-size: 15px !important;
+    color: #666 !important;
+    max-width: 600px !important;
+    margin-bottom: 60px !important;
+    line-height: 1.8 !important;
+  }
+
+  #studio-root .s-note {
+    font-size: 12px !important;
+    color: #666 !important;
+    line-height: 1.7 !important;
+    margin-top: 16px !important;
+  }
+
+  /* ========================
+     FOOTER
+  ======================== */
+  #studio-root .s-footer {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 60px !important;
+    border-top: 1px solid #222 !important;
+    background: #0a0a0a !important;
+  }
+
+  #studio-root .s-footer-brand {
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-size: 32px !important;
+    color: #333 !important;
+  }
+
+  #studio-root .s-footer-note {
+    font-family: 'Space Mono', monospace !important;
+    font-size: 10px !important;
+    color: #333 !important;
+    letter-spacing: 2px !important;
+  }
+
+  /* ========================
+     REVEAL ANIMATION
+  ======================== */
+  #studio-root .s-reveal {
+    opacity: 0 !important;
+    transform: translateY(20px) !important;
+    transition: opacity 0.7s ease, transform 0.7s ease !important;
+  }
+
+  #studio-root .s-reveal.visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  @keyframes sStudioFadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ========================
+     RESPONSIVE
+  ======================== */
+  @media (max-width: 900px) {
+    #studio-root .s-hero        { padding: 60px 24px !important; }
+    #studio-root .s-section     { padding: 60px 24px !important; }
+    #studio-root .s-desk-zones  { grid-template-columns: 1fr !important; }
+    #studio-root .s-schedule-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    #studio-root .s-camera-grid { grid-template-columns: 1fr !important; }
+    #studio-root .s-angle-grid  { grid-template-columns: 1fr !important; }
+    #studio-root .s-hero-stats  { gap: 32px !important; }
+    #studio-root .s-footer      { flex-direction: column !important; gap: 20px !important; text-align: center !important; }
+  }
 </style>
-
 </head>
 <body>
+<div id="studio-root">
 
-<nav>
-  <a href="../index.html" class="brand">🎬 Studio</a>
-  <a href="../markdown_renderer.html?file=1_Real_Unknown/README.md">1 · Unknown</a>
-  <a href="../markdown_renderer.html?file=2_Environment/README.md">2 · Environment</a>
-  <a href="../3_Simulation/carousel.html">3 · Simulation</a>
-  <a href="../markdown_renderer.html?file=4_Formula/README.md">4 · Formula</a>
-  <a href="../markdown_renderer.html?file=5_Symbols/README.md">5 · Symbols</a>
-  <a href="petersfield_v2_studio.html" class="active">🏗️ Blueprint</a>
-  <a href="../markdown_renderer.html?file=6_Semblance/README.md">6 · Semblance</a>
-  <a href="../markdown_renderer.html?file=7_Testing_Known/README.md">7 · Testing</a>
-  <a href="../markdown_renderer.html">📄 MD Renderer</a>
-</nav>
-
-<!-- HERO -->
-
-<section class="hero">
-  <div class="hero-tag">// Studio Blueprint — 2026</div>
-  <h1>THE<br><span>STUDIO</span></h1>
-  <p class="hero-sub">A complete breakdown of the physical space, production workflow, and content strategy behind a one-person YouTube operation built inside a full-time IR35 contract.</p>
-  <div class="hero-stats">
-    <div class="stat-item">
-      <span class="stat-num">7m²</span>
-      <span class="stat-label">Room Area</span>
+  <!-- HERO -->
+  <section class="s-hero">
+    <span class="s-tag">// Studio Blueprint — 2026</span>
+    <h1>THE<br><span>STUDIO</span></h1>
+    <p class="s-hero-sub">A complete breakdown of the physical space, production workflow, and content strategy behind a one-person YouTube operation built inside a full-time IR35 contract.</p>
+    <div class="s-hero-stats">
+      <div class="s-stat"><span class="s-stat-num">7m²</span><span class="s-stat-label">Room Area</span></div>
+      <div class="s-stat"><span class="s-stat-num">3.5m</span><span class="s-stat-label">Shoot Depth</span></div>
+      <div class="s-stat"><span class="s-stat-num">1×</span><span class="s-stat-label">Video / Week</span></div>
+      <div class="s-stat"><span class="s-stat-num">7</span><span class="s-stat-label">Day Pipeline</span></div>
     </div>
-    <div class="stat-item">
-      <span class="stat-num">3.5m</span>
-      <span class="stat-label">Shoot Depth</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-num">1×</span>
-      <span class="stat-label">Video / Week</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-num">7</span>
-      <span class="stat-label">Day Pipeline</span>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- FLOOR PLAN -->
-
-<section class="section reveal">
-  <div class="section-tag">01 — Space</div>
-  <h2 class="section-title">THE ROOM</h2>
-
-  <div class="floorplan">
-    <div class="room-grid">
-      <div class="room-block alcove">
-        <div class="room-label">Zone A</div>
-        <div class="room-name">The Alcove</div>
-        <div class="room-desc">Pre-production space. Laptops, server gear, home lab infrastructure. Cable containment. Kept off-camera.</div>
-        <div class="room-dim">1.0m × 0.78m</div>
-      </div>
-      <div class="room-block main">
-        <div class="room-label">Zone B — Main</div>
-        <div class="room-name">Studio Floor</div>
-        <div class="room-desc">Primary recording, editing, and production space. Houses both workstations and the full recording rig.</div>
-        <div class="room-dim">3.7m × 2.0m — 6.995 m²</div>
+  <!-- 01 SPACE -->
+  <section class="s-section s-reveal">
+    <div class="s-section-tag">01 — Space</div>
+    <div class="s-section-title">THE ROOM</div>
+    <div class="s-floorplan">
+      <div class="s-room-grid">
+        <div class="s-room-block alcove">
+          <span class="s-room-label">Zone A</span>
+          <span class="s-room-name">The Alcove</span>
+          <span class="s-room-desc">Pre-production space. Laptops, server gear, home lab infrastructure. Cable containment. Kept off-camera.</span>
+          <span class="s-room-dim">1.0m × 0.78m</span>
+        </div>
+        <div class="s-room-block main">
+          <span class="s-room-label">Zone B — Main</span>
+          <span class="s-room-name">Studio Floor</span>
+          <span class="s-room-desc">Primary recording, editing, and production space. Houses both workstations and the full recording rig.</span>
+          <span class="s-room-dim">3.7m × 2.0m — 6.995 m²</span>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- DESK ZONES -->
-
-<section class="section reveal">
-  <div class="section-tag">02 — Workstations</div>
-  <h2 class="section-title">THREE ZONES,<br>ONE LOOP</h2>
-
-  <div class="desk-zones">
-    <div class="zone" data-num="1">
-      <div class="zone-label">Left Desk</div>
-      <div class="zone-title">Pre-Production</div>
-      <div class="zone-desc">Powerful workstation driving two square monitors — 42" and 30". Used for scripting, research, and all screen capture recordings. This is where the raw material is created.</div>
-      <div class="zone-spec">42" + 30" MONITORS → SCREEN CAPTURE</div>
-    </div>
-    <div class="zone" data-num="2">
-      <div class="zone-label">Centre — Floor</div>
-      <div class="zone-title">Production</div>
-      <div class="zone-desc">The recording position. Chair at the 2-metre mark, Sony ZV-1 shooting from window toward green screen. A-roll talking head with AI-generated virtual backgrounds.</div>
-      <div class="zone-spec">SONY ZV-1 → GREEN SCREEN → FAL.AI BG</div>
-    </div>
-    <div class="zone" data-num="3">
-      <div class="zone-label">Right Desk</div>
-      <div class="zone-title">Post-Production</div>
-      <div class="zone-desc">49-inch ultrawide dedicated to the DaVinci Resolve timeline. Final assembly, colour, audio polish, and export happen here. The finishing line.</div>
-      <div class="zone-spec">49" ULTRAWIDE → DAVINCI RESOLVE</div>
-    </div>
-  </div>
-</section>
-
-<!-- CAMERA SETUP -->
-
-<section class="section reveal">
-  <div class="section-tag">03 — Camera & Green Screen</div>
-  <h2 class="section-title">THE SHOOT</h2>
-
-  <div class="camera-section">
-    <div>
-      <p style="font-size:15px; color:var(--muted); line-height:1.8; margin-bottom:32px;">Shooting direction runs window → door. Natural light hits the subject from behind the camera, the green screen replaces the door wall. The toilet and corridor behind the door create potential audio bleed — managed with a heavy curtain.</p>
-
-```
-  <div class="camera-visual">
-    <div class="room-label" style="margin-bottom:24px;">Depth Layout — Top View</div>
-    <div class="depth-diagram">
-      <div class="depth-point">
-        <div class="depth-dot camera"></div>
-        <div class="depth-label">ZV-1<br>CAMERA</div>
+  <!-- 02 WORKSTATIONS -->
+  <section class="s-section s-reveal">
+    <div class="s-section-tag">02 — Workstations</div>
+    <div class="s-section-title">THREE ZONES,<br>ONE LOOP</div>
+    <div class="s-desk-zones">
+      <div class="s-zone" data-num="1">
+        <span class="s-zone-label">Left Desk</span>
+        <span class="s-zone-title">Pre-Production</span>
+        <span class="s-zone-desc">Powerful workstation driving two square monitors — 42" and 30". Used for scripting, research, and all screen capture recordings. This is where the raw material is created.</span>
+        <span class="s-zone-spec">42" + 30" MONITORS → SCREEN CAPTURE</span>
       </div>
-      <div class="depth-line" data-dist="2.0m"></div>
-      <div class="depth-point">
-        <div class="depth-dot"></div>
-        <div class="depth-label">SUBJECT<br>POSITION</div>
+      <div class="s-zone" data-num="2">
+        <span class="s-zone-label">Centre — Floor</span>
+        <span class="s-zone-title">Production</span>
+        <span class="s-zone-desc">The recording position. Chair at the 2-metre mark, Sony ZV-1 shooting from window toward green screen. A-roll talking head with AI-generated virtual backgrounds.</span>
+        <span class="s-zone-spec">SONY ZV-1 → GREEN SCREEN → FAL.AI BG</span>
       </div>
-      <div class="depth-line" data-dist="1.5m"></div>
-      <div class="depth-point">
-        <div class="depth-dot screen"></div>
-        <div class="depth-label">GREEN<br>SCREEN</div>
+      <div class="s-zone" data-num="3">
+        <span class="s-zone-label">Right Desk</span>
+        <span class="s-zone-title">Post-Production</span>
+        <span class="s-zone-desc">49-inch ultrawide dedicated to the DaVinci Resolve timeline. Final assembly, colour, audio polish, and export happen here. The finishing line.</span>
+        <span class="s-zone-spec">49" ULTRAWIDE → DAVINCI RESOLVE</span>
       </div>
     </div>
-    <p style="font-size:12px; color:var(--muted); line-height:1.7; margin-top:16px;">1.5m separation between subject and green screen minimises spill. Shoot in S-Log for cleaner Resolve keying. Total usable depth: 3.5m.</p>
-  </div>
+  </section>
+
+  <!-- 03 CAMERA -->
+  <section class="s-section s-reveal">
+    <div class="s-section-tag">03 — Camera & Green Screen</div>
+    <div class="s-section-title">THE SHOOT</div>
+    <div class="s-camera-grid">
+      <div>
+        <p class="s-body-text">Shooting direction runs window → door. Natural light hits the subject from behind the camera, the green screen replaces the door wall. The toilet and corridor behind the door create potential audio bleed — managed with a heavy curtain.</p>
+        <div class="s-camera-visual">
+          <span class="s-room-label">Depth Layout — Top View</span>
+          <div class="s-depth-diagram">
+            <div class="s-depth-point">
+              <span class="s-depth-dot camera"></span>
+              <span class="s-depth-label">ZV-1 CAMERA</span>
+            </div>
+            <span class="s-depth-line" data-dist="2.0m"></span>
+            <div class="s-depth-point">
+              <span class="s-depth-dot"></span>
+              <span class="s-depth-label">SUBJECT POSITION</span>
+            </div>
+            <span class="s-depth-line" data-dist="1.5m"></span>
+            <div class="s-depth-point">
+              <span class="s-depth-dot screen"></span>
+              <span class="s-depth-label">GREEN SCREEN</span>
+            </div>
+          </div>
+          <p class="s-note">1.5m separation between subject and green screen minimises spill. Shoot in S-Log for cleaner Resolve keying. Total usable depth: 3.5m.</p>
+        </div>
+      </div>
+      <div class="s-strategy-list">
+        <div class="s-strategy-item">
+          <span class="s-strategy-num">01</span>
+          <div class="s-strategy-content">
+            <h3>Virtual Backgrounds</h3>
+            <p>AI-generated images via fal.ai. No copyright. Subject placed in context of the teaching content — server rooms, terminal interfaces, abstract data environments.</p>
+          </div>
+        </div>
+        <div class="s-strategy-item">
+          <span class="s-strategy-num">02</span>
+          <div class="s-strategy-content">
+            <h3>20% Screen Show</h3>
+            <p>Sprint demonstrations — real terminals, n8n flows, DaVinci timelines. Proof of work. Builds credibility that pure talking-head content cannot.</p>
+          </div>
+        </div>
+        <div class="s-strategy-item">
+          <span class="s-strategy-num">03</span>
+          <div class="s-strategy-content">
+            <h3>Ken Burns on Backgrounds</h3>
+            <p>Subtle 2–3% slow zoom on generated backgrounds in Resolve prevents the composite from reading as static. Makes the green screen invisible to most viewers.</p>
+          </div>
+        </div>
+        <div class="s-strategy-item">
+          <span class="s-strategy-num">04</span>
+          <div class="s-strategy-content">
+            <h3>Acoustic Treatment</h3>
+            <p>Hard floors and walls create flutter echo. Priority panels behind camera and on the door wall. Curtain over green screen doubles as sound absorption.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 SCHEDULE -->
+  <section class="s-section s-reveal">
+    <div class="s-section-tag">04 — Production Pipeline</div>
+    <div class="s-section-title">THE WEEK</div>
+    <p class="s-body-text">One video per week. Seven days. Each day owns a single task. No context switching within content work. Built to run inside a full-time IR35 contracting week.</p>
+    <div class="s-schedule-grid">
+      <div class="s-day hi"><span class="s-day-name">SUN</span><span class="s-day-task">Book club. Research. Ideation. Concept validation.</span><span class="s-day-tag">Ideation</span></div>
+      <div class="s-day"><span class="s-day-name">MON</span><span class="s-day-task">Script writing. Structure the narrative. Define the teaching arc.</span><span class="s-day-tag">Script</span></div>
+      <div class="s-day hi"><span class="s-day-name">TUE</span><span class="s-day-task">A-roll recording (ZV-1). Screen captures on left workstation.</span><span class="s-day-tag">Recording</span></div>
+      <div class="s-day"><span class="s-day-name">WED</span><span class="s-day-task">fal.ai prompting. Upload inputs. Background image generation setup.</span><span class="s-day-tag">AI Gen</span></div>
+      <div class="s-day"><span class="s-day-name">THU</span><span class="s-day-task">Generate AI footage and images. Cull and select usable outputs.</span><span class="s-day-tag">Generate</span></div>
+      <div class="s-day hi"><span class="s-day-name">FRI</span><span class="s-day-task">Place content on timeline. Emotion and pacing. Polish. Export.</span><span class="s-day-tag">Edit</span></div>
+      <div class="s-day"><span class="s-day-name">SAT</span><span class="s-day-task">Thumbnail. Title. Description. Tags. Chapters. Schedule upload.</span><span class="s-day-tag">Publish</span></div>
+    </div>
+  </section>
+
+  <!-- 05 RISKS -->
+  <section class="s-section s-reveal">
+    <div class="s-section-tag">05 — Risk Management</div>
+    <div class="s-section-title">PROTECT<br>THE SYSTEM</div>
+    <div class="s-strategy-list">
+      <div class="s-strategy-item">
+        <span class="s-strategy-num">01</span>
+        <div class="s-strategy-content">
+          <h3>Buffer Your Backgrounds</h3>
+          <p>Wednesday and Thursday are the highest-risk days. AI generation has unpredictable output quality. Pre-generate a library of background images so a bad generation day doesn't collapse Friday's polish time.</p>
+        </div>
+      </div>
+      <div class="s-strategy-item">
+        <span class="s-strategy-num">02</span>
+        <div class="s-strategy-content">
+          <h3>Script Backlog</h3>
+          <p>A bad Sunday doesn't stall the whole week if there are 2–3 scripts already written ahead. Decouple ideation from the production loop so the pipeline never runs dry.</p>
+        </div>
+      </div>
+      <div class="s-strategy-item">
+        <span class="s-strategy-num">03</span>
+        <div class="s-strategy-content">
+          <h3>Friday Hard Stop</h3>
+          <p>DaVinci Resolve expands to fill all available time. If the edit isn't 90% done by Friday evening, Saturday becomes a publish-readiness day using pre-templated thumbnails and descriptions — not a catch-up edit session.</p>
+        </div>
+      </div>
+      <div class="s-strategy-item">
+        <span class="s-strategy-num">04</span>
+        <div class="s-strategy-content">
+          <h3>Energy Management</h3>
+          <p>The system that will break this workflow isn't technical — it's energy. Running a full IR35 contract alongside weekly content creation is high output. The automation mindset must apply to the content pipeline itself, not just the home lab.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 CONTENT STRATEGY -->
+  <section class="s-section s-reveal">
+    <div class="s-section-tag">06 — Content Strategy</div>
+    <div class="s-section-title">THE ANGLE</div>
+    <div class="s-angle-grid">
+      <div class="s-angle-cell">
+        <span class="s-room-label">The Differentiator</span>
+        <p>You're not a full-time creator talking about AI from the outside. You're an SRE contractor <em>actively doing the work</em> — building home lab automation, running n8n workflows, managing Azure infrastructure — while teaching people how to make the same transition. That lived tension is the hook.</p>
+      </div>
+      <div class="s-angle-cell">
+        <span class="s-room-label">The Audience</span>
+        <p>Enterprise professionals who sense the AI shift but don't know how to act on it without leaving the stability of traditional roles. They need to see someone doing both — not someone who already jumped. You are that person <em>right now</em>.</p>
+      </div>
+      <div class="s-angle-cell full">
+        <span class="s-room-label">The Format</span>
+        <p>80% teaching with AI-generated contextual backgrounds. 20% proof-of-work sprints showing real terminals, workflows, and tools. Consistent weekly cadence. The studio is not decoration — it is the message: you built a professional production system inside the constraints of a real working life.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="s-footer">
+    <span class="s-footer-brand">STUDIO BLUEPRINT</span>
+    <span class="s-footer-note">// GENERATED FROM CONVERSATION — FEB 2026</span>
+  </footer>
+
 </div>
-
-<div>
-  <ul class="strategy-list">
-    <li class="strategy-item">
-      <span class="strategy-num">01</span>
-      <div class="strategy-content">
-        <h3>Virtual Backgrounds</h3>
-        <p>AI-generated images via fal.ai. No copyright. Subject placed in context of the teaching content — server rooms, terminal interfaces, abstract data environments. Reinforces the message visually.</p>
-      </div>
-    </li>
-    <li class="strategy-item">
-      <span class="strategy-num">02</span>
-      <div class="strategy-content">
-        <h3>20% Screen Show</h3>
-        <p>Sprint demonstrations — real terminals, n8n flows, DaVinci timelines. Proof of work. Builds credibility that pure talking-head content cannot. The differentiator in the AI skills space.</p>
-      </div>
-    </li>
-    <li class="strategy-item">
-      <span class="strategy-num">03</span>
-      <div class="strategy-content">
-        <h3>Ken Burns on Backgrounds</h3>
-        <p>Subtle 2–3% slow zoom on generated backgrounds in Resolve prevents the composite from reading as static. Makes the green screen invisible to most viewers.</p>
-      </div>
-    </li>
-    <li class="strategy-item">
-      <span class="strategy-num">04</span>
-      <div class="strategy-content">
-        <h3>Acoustic Treatment</h3>
-        <p>Hard floors and walls create flutter echo. Priority panels: behind camera and on the door wall. Curtain over green screen doubles as sound absorption when not filming.</p>
-      </div>
-    </li>
-  </ul>
-</div>
-```
-
-  </div>
-</section>
-
-<!-- WEEKLY SCHEDULE -->
-
-<section class="section reveal">
-  <div class="section-tag">04 — Production Pipeline</div>
-  <h2 class="section-title">THE WEEK</h2>
-  <p style="font-size:15px; color:var(--muted); max-width:600px; margin-bottom:60px; line-height:1.8;">One video per week. Seven days. Each day owns a single task. No context switching within content work. Built to run inside a full-time IR35 contracting week.</p>
-
-  <div class="schedule-grid">
-    <div class="day-card highlight">
-      <span class="day-name">SUN</span>
-      <div class="day-task">Book club. Research. Ideation. Concept validation.</div>
-      <span class="day-tag">Ideation</span>
-    </div>
-    <div class="day-card">
-      <span class="day-name">MON</span>
-      <div class="day-task">Script writing. Structure the narrative. Define the teaching arc.</div>
-      <span class="day-tag">Script</span>
-    </div>
-    <div class="day-card highlight">
-      <span class="day-name">TUE</span>
-      <div class="day-task">A-roll recording (ZV-1). Screen captures on left workstation.</div>
-      <span class="day-tag">Recording</span>
-    </div>
-    <div class="day-card">
-      <span class="day-name">WED</span>
-      <div class="day-task">fal.ai prompting. Upload inputs. Background image generation setup.</div>
-      <span class="day-tag">AI Gen</span>
-    </div>
-    <div class="day-card">
-      <span class="day-name">THU</span>
-      <div class="day-task">Generate AI footage and images. Cull and select usable outputs.</div>
-      <span class="day-tag">Generate</span>
-    </div>
-    <div class="day-card highlight">
-      <span class="day-name">FRI</span>
-      <div class="day-task">Place content on timeline. Emotion and pacing. Polish. Export.</div>
-      <span class="day-tag">Edit</span>
-    </div>
-    <div class="day-card">
-      <span class="day-name">SAT</span>
-      <div class="day-task">Thumbnail. Title. Description. Tags. Chapters. Schedule upload.</div>
-      <span class="day-tag">Publish</span>
-    </div>
-  </div>
-</section>
-
-<!-- STRATEGIC RISKS -->
-
-<section class="section reveal">
-  <div class="section-tag">05 — Risk Management</div>
-  <h2 class="section-title">PROTECT<br>THE SYSTEM</h2>
-
-  <ul class="strategy-list">
-    <li class="strategy-item">
-      <span class="strategy-num">01</span>
-      <div class="strategy-content">
-        <h3>Buffer Your Backgrounds</h3>
-        <p>Wednesday and Thursday are the highest-risk days. AI generation has unpredictable output quality. Pre-generate a library of background images so a bad generation day doesn't collapse Friday's polish time.</p>
-      </div>
-    </li>
-    <li class="strategy-item">
-      <span class="strategy-num">02</span>
-      <div class="strategy-content">
-        <h3>Script Backlog</h3>
-        <p>A bad Sunday doesn't stall the whole week if there are 2–3 scripts already written ahead. Decouple ideation from the production loop so the pipeline never runs dry.</p>
-      </div>
-    </li>
-    <li class="strategy-item">
-      <span class="strategy-num">03</span>
-      <div class="strategy-content">
-        <h3>Friday Hard Stop</h3>
-        <p>DaVinci Resolve expands to fill all available time. If the edit isn't 90% done by Friday evening, Saturday becomes a publish-readiness day using pre-templated thumbnails and descriptions — not a catch-up edit session.</p>
-      </div>
-    </li>
-    <li class="strategy-item">
-      <span class="strategy-num">04</span>
-      <div class="strategy-content">
-        <h3>Energy Management</h3>
-        <p>The system that will break this workflow isn't technical — it's energy. Running a full IR35 contract alongside weekly content creation is high output. The automation mindset (n8n, AI tools, templates) must apply to the content pipeline itself, not just the home lab.</p>
-      </div>
-    </li>
-  </ul>
-</section>
-
-<!-- CONTENT STRATEGY -->
-
-<section class="section reveal">
-  <div class="section-tag">06 — Content Strategy</div>
-  <h2 class="section-title">THE ANGLE</h2>
-
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border);">
-    <div style="background:var(--bg); padding:48px;">
-      <div class="room-label" style="margin-bottom:20px;">The Differentiator</div>
-      <p style="font-size:15px; line-height:1.8; color:var(--muted);">You're not a full-time creator talking about AI from the outside. You're an SRE contractor <em style="color:var(--text);">actively doing the work</em> — building home lab automation, running n8n workflows, managing Azure infrastructure, editing in DaVinci Resolve — while teaching people how to make the same transition. That lived tension is the hook.</p>
-    </div>
-    <div style="background:var(--bg); padding:48px;">
-      <div class="room-label" style="margin-bottom:20px;">The Audience</div>
-      <p style="font-size:15px; line-height:1.8; color:var(--muted);">Enterprise professionals who sense the AI shift but don't know how to act on it without leaving the stability of traditional roles. They need to see someone doing both — not someone who already jumped. You are that person <em style="color:var(--text);">right now</em>.</p>
-    </div>
-    <div style="background:var(--surface); padding:48px; grid-column:1/-1;">
-      <div class="room-label" style="margin-bottom:20px;">The Format</div>
-      <p style="font-size:15px; line-height:1.8; color:var(--muted);">80% teaching with AI-generated contextual backgrounds. 20% proof-of-work sprints showing real terminals, workflows, and tools. Consistent weekly cadence. Memory palace pedagogy applied to technical concepts. The studio is not decoration — it is the message: you built a professional production system inside the constraints of a real working life.</p>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-brand">STUDIO BLUEPRINT</div>
-  <div class="footer-note">// GENERATED FROM CONVERSATION — FEB 2026</div>
-</footer>
 
 <script>
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
+  (function() {
+    var reveals = document.querySelectorAll('#studio-root .s-reveal');
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(function(el) { observer.observe(el); });
+  })();
 </script>
-
 </body>
 </html>
