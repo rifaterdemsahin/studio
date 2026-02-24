@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio Design Video — Studio</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      min-height: 100vh;
+    }
+
+    /* ── Navigation (shared) ── */
+    nav {
+      background: #161b22;
+      border-bottom: 1px solid #30363d;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav .brand {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #58a6ff;
+      padding: 1rem 1rem 1rem 0;
+      text-decoration: none;
+      margin-right: 1rem;
+      white-space: nowrap;
+    }
+    nav a {
+      color: #8b949e;
+      text-decoration: none;
+      padding: 1rem 0.75rem;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    nav a:hover, nav a.active { color: #c9d1d9; border-bottom: 2px solid #58a6ff; }
+
+    /* ── Page header ── */
+    .page-header {
+      text-align: center;
+      padding: 2.5rem 1.5rem 1rem;
+    }
+    .page-header h1 { font-size: 1.75rem; color: #e6edf3; margin-bottom: 0.5rem; }
+    .page-header p { color: #8b949e; font-size: 0.95rem; }
+
+    /* ── Video player ── */
+    .video-wrapper {
+      max-width: 900px;
+      margin: 2rem auto 0;
+      padding: 0 1.5rem;
+    }
+
+    .video-container {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      overflow: hidden;
+      padding: 1.5rem;
+    }
+
+    .video-container video {
+      width: 100%;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .video-caption {
+      margin-top: 1.25rem;
+      text-align: center;
+    }
+    .video-caption h2 { font-size: 1.125rem; color: #e6edf3; margin-bottom: 0.35rem; }
+    .video-caption p { font-size: 0.875rem; color: #8b949e; }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: #484f58;
+      border-top: 1px solid #21262d;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="brand">🎬 Studio</a>
+    <a href="../markdown_renderer.html?file=1_Real_Unknown/README.md">1 · Unknown</a>
+    <a href="../markdown_renderer.html?file=2_Environment/README.md">2 · Environment</a>
+    <a href="carousel.html">3 · Simulation</a>
+    <a href="../markdown_renderer.html?file=4_Formula/README.md">4 · Formula</a>
+    <a href="../markdown_renderer.html?file=5_Symbols/README.md">5 · Symbols</a>
+    <a href="../markdown_renderer.html?file=6_Semblance/README.md">6 · Semblance</a>
+    <a href="../markdown_renderer.html?file=7_Testing_Known/README.md">7 · Testing</a>
+    <a href="video.html" class="active">▶ Video</a>
+    <a href="../markdown_renderer.html">📄 MD Renderer</a>
+  </nav>
+
+  <div class="page-header">
+    <h1>▶ Studio Design Video</h1>
+    <p>Walkthrough of the studio layout design for Petersfield Mansions</p>
+  </div>
+
+  <div class="video-wrapper">
+    <div class="video-container">
+      <video controls preload="metadata">
+        <source src="Studio_design_WhatsApp%20Video%202026-02-24%20at%2009.55.32.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div class="video-caption">
+        <h2>Studio Design — 24 Feb 2026</h2>
+        <p>Studio layout design walkthrough for the 2 m × 3.5 m room at Petersfield Mansions.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>Studio · 3_Simulation · Petersfield Mansions 2 m × 3.5 m</footer>
+
+</body>
+</html>
