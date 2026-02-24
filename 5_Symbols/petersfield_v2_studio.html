@@ -190,6 +190,42 @@
   }
 
   /* ========================
+     ROOM PHOTO
+  ======================== */
+  #studio-root .s-room-photo {
+    display: block !important;
+    width: 100% !important;
+    margin-top: 40px !important;
+    border: 1px solid #222 !important;
+    overflow: hidden !important;
+  }
+
+  #studio-root .s-room-photo img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    filter: grayscale(20%) !important;
+    transition: filter 0.4s !important;
+  }
+
+  #studio-root .s-room-photo img:hover {
+    filter: grayscale(0%) !important;
+  }
+
+  #studio-root .s-room-photo-caption {
+    display: block !important;
+    font-family: 'Space Mono', monospace !important;
+    font-size: 10px !important;
+    color: #444 !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+    padding: 12px 16px !important;
+    background: #111 !important;
+    border-top: 1px solid #222 !important;
+  }
+
+  /* ========================
      FLOOR PLAN
   ======================== */
   #studio-root .s-floorplan {
@@ -670,6 +706,10 @@
           <span class="s-room-desc">Primary recording, editing, and production space. Houses both workstations and the full recording rig.</span>
           <span class="s-room-dim">3.7m × 2.0m — 6.995 m²</span>
         </div>
+      </div>
+      <div class="s-room-photo">
+        <img src="../3_Simulation/room_design_petersfield_WhatsApp%20Image%202026-02-24%20at%2010.05.16.jpeg" alt="Petersfield studio room design — Feb 2026">
+        <span class="s-room-photo-caption">// Room design — Petersfield studio, Feb 2026</span>
       </div>
     </div>
   </section>
